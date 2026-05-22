@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>BinaAI | AI Construction Assistant for Contractors & Suppliers</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F5F7FA;
+            color: #1E293B;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header / Nav */
+        .navbar {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 16px 0;
+        }
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2563EB, #0F2B6D);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+        .logo span {
+            color: #2563EB;
+            background: none;
+            -webkit-background-clip: unset;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #334155;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #2563EB;
+        }
+        .btn-outline {
+            border: 1.5px solid #2563EB;
+            background: transparent;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #2563EB;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-outline:hover {
+            background: #2563EB10;
+        }
+        .btn-primary {
+            background: #2563EB;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 2px 6px rgba(37,99,235,0.2);
+        }
+        .btn-primary:hover {
+            background: #1D4ED8;
+        }
+        .btn-large {
+            padding: 14px 36px;
+            font-size: 1.1rem;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 60px 0 40px 0;
+        }
+        .hero-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+        .hero-badge {
+            background: #EFF6FF;
+            color: #2563EB;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: #0F172A;
+            margin-bottom: 24px;
+        }
+        .hero-title span {
+            color: #2563EB;
+            border-bottom: 3px solid #93C5FD;
+        }
+        .hero-desc {
+            font-size: 1.2rem;
+            color: #475569;
+            max-width: 600px;
+            margin-bottom: 32px;
+        }
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-top: 24px;
+        }
+        .stat-item h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0F172A;
+        }
+        .stat-item p {
+            color: #5B6E8C;
+            font-size: 0.9rem;
+        }
+
+        /* features */
+        .section {
+            padding: 64px 0;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .section-sub {
+            text-align: center;
+            color: #5B6E8C;
+            max-width: 700px;
+            margin: 0 auto 48px auto;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.05);
+            transition: all 0.25s;
+            border: 1px solid #E9EEF5;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+        }
+        .card-icon {
+            font-size: 2.4rem;
+            color: #2563EB;
+            margin-bottom: 20px;
+        }
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+        .card p {
+            color: #475569;
+        }
+
+        /* WhatsApp Demo */
+        .demo-box {
+            background: linear-gradient(135deg, #0F2B6D 0%, #1E3A8A 100%);
+            border-radius: 40px;
+            padding: 48px 40px;
+            color: white;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 32px;
+        }
+        .demo-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+        .demo-text p {
+            color: #CBD5E1;
+            max-width: 450px;
+        }
+        .demo-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        /* pricing table simple */
+        .pricing-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 40px;
+        }
+        .pricing-card {
+            background: white;
+            border-radius: 32px;
+            padding: 32px;
+            flex: 1;
+            min-width: 260px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #E2E8F0;
+        }
+        .pricing-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+        .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #0F172A;
+            margin: 16px 0 8px;
+        }
+        .feature-list {
+            list-style: none;
+            margin: 24px 0;
+        }
+        .feature-list li {
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature-list i.fa-check {
+            color: #22C55E;
+            width: 20px;
+        }
+
+        footer {
+            background: #0F172A;
+            color: #94A3B8;
+            padding: 48px 0;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .demo-box {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 100;
+            transition: transform 0.2s;
+        }
+        .whatsapp-float i {
+            font-size: 32px;
+            color: white;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+<div class="whatsapp-float" onclick="openWhatsApp()">
+    <i class="fab fa-whatsapp"></i>
+</div>
+
+<nav class="navbar">
+    <div class="container nav-flex">
+        <div class="logo">Bina<span>AI</span></div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#demo">Demo</a>
+            <button class="btn-outline" onclick="openWhatsApp()">Contact sales</button>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="container hero">
+        <div class="hero-grid">
+            <div>
+                <div class="hero-badge"><i class="fas fa-robot"></i> Malaysia's 1st AI for contractors</div>
+                <h1 class="hero-title">Your WhatsApp AI that <span>takes off quantities,</span> creates POs and tracks inventory.</h1>
+                <p class="hero-desc">Stop manual data entry. Text drawings, get instant BOQ, generate purchase orders, and monitor site stock — all from your phone.</p>
+                <button class="btn-primary btn-large" onclick="openWhatsApp()"><i class="fab fa-whatsapp"></i> Start free trial →</button>
+                <div class="hero-stats">
+                    <div class="stat-item"><h3>70%</h3><p>faster tendering</p></div>
+                    <div class="stat-item"><h3>RM2k+</h3><p>saved monthly</p></div>
+                    <div class="stat-item"><h3>24/7</h3><p>AI assistant</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="features">
+        <div class="container">
+            <h2 class="section-title">One WhatsApp. Endless automation.</h2>
+            <p class="section-sub">Built specifically for Malaysia contractors, suppliers and project managers.</p>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-ruler-combined"></i></div>
+                    <h3>Auto Quantity Takeoff</h3>
+                    <p>Upload PDF drawings → AI extracts wiring length, concrete vol, door counts, etc. Calculates material/labour/equipment instantly.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                    <h3>Tender → Costing in 5 min</h3>
+                    <p>Feed 200-page tender doc. Get full BOQ + Labour/Material/Equipment breakdown with markup scenarios & final bid amount.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-truck-fast"></i></div>
+                    <h3>PO & Invoice Generator</h3>
+                    <p>"Create PO for 500 bricks" → AI fills your template, converts to PDF and sends back. Ready to forward to supplier.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-boxes"></i></div>
+                    <h3>Stock Tracker (link dashboard)</h3>
+                    <p>Text "ordered 100 block" / "used 45 block". Get live balance + shareable spreadsheet link to monitor all site materials.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Price Intelligence</h3>
+                    <p>Ask current market price for rebar/cement. AI browses supplier sites or uses your own price list PDF.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-clipboard-list"></i></div>
+                    <h3>RFI & Submittal Assistant</h3>
+                    <p>Auto-draft RFIs, log change orders, compare drawing revisions — reduce document time by 60%.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="demo">
+        <div class="demo-box">
+            <div class="demo-text">
+                <h3>See it in action</h3>
+                <p>We’ll send a live demo directly to your WhatsApp. No software install, just chat.</p>
+            </div>
+            <button class="demo-btn" onclick="openWhatsApp()"><i class="fab fa-whatsapp"></i> Get live demo →</button>
+        </div>
+    </div>
+
+    <div class="section" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple, transparent pricing</h2>
+            <p class="section-sub">No hidden fees. Cancel anytime. First 30 days pilot at cost.</p>
+            <div class="pricing-row">
+                <div class="pricing-card">
+                    <h4>Pilot</h4>
+                    <div class="price">RM 70-140</div>
+                    <p>First month (AI usage only)</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> All core features</li>
+                        <li><i class="fas fa-check"></i> WhatsApp integration</li>
+                        <li><i class="fas fa-check"></i> Your price list upload</li>
+                        <li><i class="fas fa-check"></i> Onboarding & support</li>
+                    </ul>
+                    <button class="btn-primary" onclick="openWhatsApp()">Start pilot</button>
+                </div>
+                <div class="pricing-card">
+                    <h4>Pro</h4>
+                    <div class="price">RM 800<small style="font-size:1rem">/mo</small></div>
+                    <p>After pilot, full automation</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Unlimited takeoffs</li>
+                        <li><i class="fas fa-check"></i> POs, invoices, stock link</li>
+                        <li><i class="fas fa-check"></i> 5 team members access</li>
+                        <li><i class="fas fa-check"></i> Daily backup & priority</li>
+                    </ul>
+                    <button class="btn-primary" onclick="openWhatsApp()">Subscribe</button>
+                </div>
+                <div class="pricing-card">
+                    <h4>Enterprise</h4>
+                    <div class="price">Custom</div>
+                    <p>For main contractors & suppliers</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Private Malaysia server</li>
+                        <li><i class="fas fa-check"></i> Custom skills & templates</li>
+                        <li><i class="fas fa-check"></i> API integration (ERP/BQ)</li>
+                        <li><i class="fas fa-check"></i> 24/7 support + SLA</li>
+                    </ul>
+                    <button class="btn-primary" onclick="openWhatsApp()">Talk to us</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-bottom: 48px;">
+        <div style="background: #EFF6FF; border-radius: 32px; padding: 32px; text-align: center;">
+            <i class="fas fa-shield-alt" style="font-size: 2rem; color:#2563EB;"></i>
+            <h3 style="margin: 12px 0;">Your data stays yours</h3>
+            <p style="color: #2C3E66; max-width: 600px; margin: 0 auto;">All drawings, price lists & contracts are processed on private servers — never shared with public AI models. Enterprise-grade security for construction.</p>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p><strong>BinaAI</strong> — powered by open-source AI agents | Serving contractors across KL, Selangor, Johor & whole Malaysia</p>
+        <p style="margin-top: 16px;"><i class="fab fa-whatsapp"></i> +60 (12) 345 6789  |  hello@binaai.com.my</p>
+        <p style="margin-top: 24px; font-size: 0.8rem;">© 2025 BinaAI – AI for construction project management</p>
+    </div>
+</footer>
+
+<script>
+    function openWhatsApp() {
+        // Replace with your actual WhatsApp number and default message
+        let phone = "60123456789";      // <--- CHANGE TO YOUR MALAYSIA WHATSAPP NUMBER (no +, no spaces)
+        let message = "Hi, I'm interested in BinaAI for my construction company. Please share more info.";
+        let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+    }
+</script>
+
+</body>
+</html>

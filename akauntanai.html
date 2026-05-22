@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>akauntanAI | Sistem Perakaunan Pintar untuk Bisnes Malaysia</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F8FAFE;
+            color: #1E293B;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .navbar {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 16px 0;
+        }
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2563EB, #0F2B6D);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .logo span {
+            color: #2563EB;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #334155;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #2563EB;
+        }
+        .btn-outline {
+            border: 1.5px solid #2563EB;
+            background: transparent;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #2563EB;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #2563EB;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-primary:hover {
+            background: #1D4ED8;
+        }
+        .btn-large {
+            padding: 14px 36px;
+            font-size: 1.1rem;
+        }
+        .btn-success {
+            background: #25D366;
+        }
+        .btn-success:hover {
+            background: #1DAE5A;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 60px 0 40px 0;
+        }
+        .hero-badge {
+            background: #EFF6FF;
+            color: #2563EB;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #0F172A;
+            margin-bottom: 24px;
+        }
+        .hero-title span {
+            color: #2563EB;
+        }
+        .hero-desc {
+            font-size: 1.2rem;
+            color: #475569;
+            max-width: 600px;
+            margin-bottom: 32px;
+        }
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-top: 24px;
+        }
+        .stat-item h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0F172A;
+        }
+        .stat-item p {
+            color: #5B6E8C;
+            font-size: 0.85rem;
+        }
+
+        /* WhatsApp Demo */
+        .demo-message {
+            background: white;
+            border-radius: 28px;
+            padding: 24px;
+            margin: 32px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 1px solid #E2E8F0;
+        }
+        .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #EFF6FF;
+        }
+        .demo-header i {
+            font-size: 2rem;
+            color: #25D366;
+        }
+        .demo-bubble {
+            background: #DCF8C6;
+            padding: 16px 20px;
+            border-radius: 20px;
+            border-bottom-left-radius: 4px;
+            margin-bottom: 16px;
+            max-width: 90%;
+        }
+        .demo-bubble.user {
+            background: #E4E6EB;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 4px;
+            margin-left: auto;
+        }
+        .demo-bubble p {
+            margin-bottom: 8px;
+        }
+        .demo-bubble small {
+            font-size: 0.7rem;
+            opacity: 0.6;
+        }
+
+        /* Features Grid */
+        .section {
+            padding: 64px 0;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .section-sub {
+            text-align: center;
+            color: #5B6E8C;
+            max-width: 700px;
+            margin: 0 auto 48px auto;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px 24px;
+            border: 1px solid #E9EEF5;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+        }
+        .card-icon {
+            font-size: 2rem;
+            color: #2563EB;
+            margin-bottom: 20px;
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+        .card p {
+            color: #475569;
+        }
+
+        /* OCR Demo - Receipt Scanner */
+        .ocr-demo {
+            background: linear-gradient(135deg, #0F2B6D, #1E3A8A);
+            border-radius: 32px;
+            padding: 32px;
+            color: white;
+            margin: 32px 0;
+        }
+        .ocr-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+        .receipt-placeholder {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            border: 2px dashed rgba(255,255,255,0.3);
+        }
+        .extracted-data {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 20px;
+        }
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        @media (max-width: 768px) {
+            .ocr-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* P&L Preview */
+        .pnl-preview {
+            background: white;
+            border-radius: 28px;
+            padding: 24px;
+            margin: 32px 0;
+            border: 1px solid #E2E8F0;
+        }
+        .pnl-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #EFF6FF;
+        }
+
+        /* Pricing */
+        .pricing-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 40px;
+        }
+        .pricing-card {
+            background: white;
+            border-radius: 32px;
+            padding: 32px;
+            flex: 1;
+            min-width: 260px;
+            border: 1px solid #E2E8F0;
+            transition: all 0.2s;
+        }
+        .pricing-card:hover {
+            border-color: #2563EB;
+        }
+        .pricing-card.featured {
+            border: 2px solid #2563EB;
+            position: relative;
+        }
+        .featured-badge {
+            position: absolute;
+            top: -12px;
+            right: 24px;
+            background: #2563EB;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #0F172A;
+            margin: 16px 0 8px;
+        }
+        .price small {
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        .feature-list {
+            list-style: none;
+            margin: 24px 0;
+        }
+        .feature-list li {
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature-list i.fa-check {
+            color: #22C55E;
+        }
+
+        /* Testimonials */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 48px 0;
+        }
+        .testimonial-card {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid #E2E8F0;
+        }
+        .stars {
+            color: #F59E0B;
+            margin-bottom: 16px;
+        }
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 16px;
+            color: #475569;
+        }
+        .testimonial-name {
+            font-weight: 700;
+        }
+
+        /* CTA */
+        .cta-box {
+            background: linear-gradient(135deg, #0F2B6D, #1E3A8A);
+            border-radius: 40px;
+            padding: 48px 40px;
+            color: white;
+            text-align: center;
+            margin: 48px 0;
+        }
+        .cta-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+        }
+
+        footer {
+            background: #0F172A;
+            color: #94A3B8;
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 100;
+        }
+        .whatsapp-float i {
+            font-size: 32px;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="whatsapp-float" onclick="openWhatsApp()">
+    <i class="fab fa-whatsapp"></i>
+</div>
+
+<nav class="navbar">
+    <div class="container nav-flex">
+        <div class="logo">akauntan<span>AI</span></div>
+        <div class="nav-links">
+            <a href="#">Utama</a>
+            <a href="#features">Ciri</a>
+            <a href="#pricing">Harga</a>
+            <button class="btn-outline" onclick="openWhatsApp()">Hubungi Kami</button>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="container hero">
+        <div class="hero-badge"><i class="fas fa-calculator"></i> AI untuk Bisnes Malaysia</div>
+        <h1 class="hero-title">Urus Akaun Bisnes <span>Semudah Ambil Gambar</span> melalui WhatsApp</h1>
+        <p class="hero-desc">Guna AI untuk imbas resit, urus jualan, dan jana laporan Untung Rugi secara automatik. Tanpa perlu buka komputer.</p>
+        <button class="btn-primary btn-large" onclick="openWhatsApp()"><i class="fab fa-whatsapp"></i> Cuba Percuma →</button>
+        <div class="hero-stats">
+            <div class="stat-item"><h3>2,000+</h3><p>Pengguna Aktif</p></div>
+            <div class="stat-item"><h3>50k+</h3><p>Transaksi Diimbas</p></div>
+            <div class="stat-item"><h3>14</h3><p>Negeri di Malaysia</p></div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Demo -->
+    <div class="container">
+        <div class="demo-message">
+            <div class="demo-header">
+                <i class="fab fa-whatsapp"></i>
+                <h3>Macam mana ia berfungsi — Demo WhatsApp</h3>
+            </div>
+            <div class="demo-bubble user">
+                <p><i class="fab fa-whatsapp"></i> <strong>Anda:</strong> [Hantar gambar resit]</p>
+                <p>"Rekodkan belanja ini"</p>
+                <small>Dihantar 9:41 AM</small>
+            </div>
+            <div class="demo-bubble">
+                <p><i class="fas fa-robot"></i> <strong>akauntanAI:</strong></p>
+                <p>✅ Resit berjaya diimbas!<br><br>
+                📄 <strong>Data yang diekstrak:</strong><br>
+                Tarikh: 22 Jun 2026<br>
+                Supplier: Hardware Trading Sdn Bhd<br>
+                Amaun: RM 450.00<br>
+                Kategori: Belanja Operasi<br><br>
+                Type "simpan" untuk rekodkan ke akaun anda.</p>
+                <small>Dihantar 9:41 AM</small>
+            </div>
+            <div class="demo-bubble user">
+                <p><i class="fab fa-whatsapp"></i> <strong>Anda:</strong> "Jana laporan P&L untuk bulan ini"</p>
+                <small>Dihantar 9:42 AM</small>
+            </div>
+            <div class="demo-bubble">
+                <p><i class="fas fa-robot"></i> <strong>akauntanAI:</strong></p>
+                <p>📊 <strong>PENYATA UNTUNG RUGI</strong><br>
+                Jun 2026<br><br>
+                Jualan: RM 12,500.00<br>
+                Kos Jualan: RM 5,200.00<br>
+                Belanja Operasi: RM 2,800.00<br>
+                <strong>Untung Bersih: RM 4,500.00</strong><br><br>
+                [📎 Laporan PDF dilampirkan]<br>
+                🔗 <a href="#" style="color:#2563EB;">Dashboard penuh →</a></p>
+                <small>Dihantar 9:42 AM</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="section" id="features">
+        <div class="container">
+            <h2 class="section-title">Kenapa Pilih akauntanAI?</h2>
+            <p class="section-sub">Direka untuk usahawan Malaysia yang serius. Bukan sekadar akaun — ia sistem kewangan pintar untuk bisnes anda.</p>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-camera"></i></div>
+                    <h3>Imbasan AI</h3>
+                    <p>Snap gambar resit, AI terus ekstrak data (supplier, amaun, tarikh) secara automatik. Jimat masa berjam-jam.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Laporan P&L Live</h3>
+                    <p>Penyata Untung Rugi dikemaskini secara langsung. PDF sedia muat turun dan share dengan akauntan anda.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fab fa-whatsapp"></i></div>
+                    <h3>Akses WhatsApp</h3>
+                    <p>Guna di mana-mana melalui WhatsApp. Tiada app baru perlu install. Sesuai untuk kedai, kontraktor, dan freelancer.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-file-invoice"></i></div>
+                    <h3>Imbasan Bank Statement</h3>
+                    <p>Upload bank statement, AI akan padankan transaksi dengan rekod anda. Reconciliation jadi mudah.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3>Analisis Pintar</h3>
+                    <p>Dapatkan insight tentang aliran tunai, kategori belanja tertinggi, dan cadangan penjimatan.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Data Selamat</h3>
+                    <p>Data anda disimpan di server Malaysia. Tidak dikongsi dengan pihak ketiga.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OCR Demo Section -->
+    <div class="container">
+        <div class="ocr-demo">
+            <h3 style="margin-bottom: 20px; text-align: center;">🔍 Imbasan Resit dengan AI</h3>
+            <div class="ocr-grid">
+                <div class="receipt-placeholder">
+                    <i class="fas fa-receipt" style="font-size: 3rem; margin-bottom: 16px; display: block;"></i>
+                    <p style="font-size: 0.8rem;">📷 Hantar gambar resit melalui WhatsApp</p>
+                    <div style="background: white; color: #1E293B; padding: 12px; border-radius: 12px; margin-top: 16px; font-family: monospace; font-size: 0.7rem;">
+                        <strong>HARDWARE TRADING SDN BHD</strong><br>
+                        123, Jalan SS2/24, 47300 PJ<br>
+                        Tel: 03-1234 5678<br>
+                        GST: 1234567890<br>
+                        ---------------------------------<br>
+                        20/06/2026 10:30 AM<br>
+                        ---------------------------------<br>
+                        Cement 50kg x 10 @ RM23 = RM230<br>
+                        Rebar 12mm x 50kg @ RM3.80 = RM190<br>
+                        ---------------------------------<br>
+                        TOTAL: RM420.00<br>
+                        SST (6%): RM25.20<br>
+                        GRAND TOTAL: RM445.20<br>
+                        =================================<br>
+                        Tunai: RM500.00<br>
+                        Baki: RM54.80
+                    </div>
+                </div>
+                <div class="extracted-data">
+                    <h4 style="margin-bottom: 16px;">✅ Data Yang Diekstrak</h4>
+                    <div class="data-row"><span>Tarikh:</span><span style="font-weight: 600;">20 Jun 2026</span></div>
+                    <div class="data-row"><span>Supplier:</span><span style="font-weight: 600;">Hardware Trading Sdn Bhd</span></div>
+                    <div class="data-row"><span>Item:</span><span style="font-weight: 600;">Cement, Rebar</span></div>
+                    <div class="data-row"><span>Jumlah (sebelum SST):</span><span style="font-weight: 600;">RM420.00</span></div>
+                    <div class="data-row"><span>SST:</span><span style="font-weight: 600;">RM25.20</span></div>
+                    <div class="data-row"><span>Jumlah Keseluruhan:</span><span style="font-weight: 600;">RM445.20</span></div>
+                    <div class="data-row"><span>Kaedah Bayaran:</span><span style="font-weight: 600;">Tunai</span></div>
+                    <div style="margin-top: 16px; background: rgba(255,255,255,0.2); border-radius: 12px; padding: 12px;">
+                        <p style="font-size: 0.75rem;">⚠️ AI mengesan ini adalah <strong>Belanja Operasi</strong>. OK untuk rekodkan?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- P&L Preview -->
+    <div class="container">
+        <div class="pnl-preview">
+            <div class="pnl-header">
+                <h3><i class="fas fa-chart-line"></i> Penyata Untung Rugi (P&L)</h3>
+                <button class="btn-outline" style="padding: 6px 16px; font-size: 0.8rem;" onclick="openWhatsApp()">Download PDF</button>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+                <div>
+                    <p style="color: #5B6E8C; margin-bottom: 8px;">📈 Jualan</p>
+                    <p style="font-size: 1.8rem; font-weight: 800;">RM 12,500</p>
+                </div>
+                <div>
+                    <p style="color: #5B6E8C; margin-bottom: 8px;">📦 Kos Jualan</p>
+                    <p style="font-size: 1.8rem; font-weight: 800;">RM 5,200</p>
+                </div>
+                <div>
+                    <p style="color: #5B6E8C; margin-bottom: 8px;">📋 Belanja Operasi</p>
+                    <p style="font-size: 1.8rem; font-weight: 800;">RM 2,800</p>
+                </div>
+                <div>
+                    <p style="color: #22C55E; margin-bottom: 8px;">✅ Untung Bersih</p>
+                    <p style="font-size: 1.8rem; font-weight: 800; color: #22C55E;">RM 4,500</p>
+                </div>
+            </div>
+            <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #E2E8F0;">
+                <p style="font-size: 0.75rem; color: #5B6E8C;">* Laporan P&L dikemaskini secara langsung setiap kali anda rekod transaksi baru.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="container">
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="testimonial-text">"Dulu kena simpan resit dalam kotak, sekarang ambil gambar saja! Senang gila. Laporan P&L terus keluar."</p>
+                <p class="testimonial-name">— Siti Aminah</p>
+                <p style="font-size: 0.75rem; color: #5B6E8C;">Owner Kedai Makan</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="testimonial-text">"Laporan P&L yang dijana sangat membantu faham aliran tunai bisnes. Rekomended untuk semua usahawan!"</p>
+                <p class="testimonial-name">— Khairul Ali</p>
+                <p style="font-size: 0.75rem; color: #5B6E8C;">Freelancer Digital</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="testimonial-text">"User-friendly dan AI dia memang power. Jimat masa banyak untuk manage akaun perniagaan."</p>
+                <p class="testimonial-name">— Sarah Tan</p>
+                <p style="font-size: 0.75rem; color: #5B6E8C;">Butik Pakaian</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <div class="section" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Pilih Pakej Anda</h2>
+            <p class="section-sub">Mula percuma. Upgrade bila bisnes berkembang.</p>
+            <div class="pricing-row">
+                <div class="pricing-card">
+                    <h4>Percuma</h4>
+                    <div class="price">RM0</div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> 5 Imbasan Resit / bulan</li>
+                        <li><i class="fas fa-check"></i> Unlimited Rekod Manual</li>
+                        <li><i class="fas fa-check"></i> 1× Imbasan Bank Statement</li>
+                        <li><i class="fas fa-check"></i> WhatsApp Assistant</li>
+                    </ul>
+                    <button class="btn-primary" style="width:100%" onclick="openWhatsApp()">Mula Percuma</button>
+                </div>
+                <div class="pricing-card">
+                    <h4>Starter</h4>
+                    <div class="price">RM50<span><small>/bulan</small></span></div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> 100 Imbasan Resit / bulan</li>
+                        <li><i class="fas fa-check"></i> Unlimited Rekod Manual</li>
+                        <li><i class="fas fa-check"></i> 3× Imbasan Bank Statement</li>
+                        <li><i class="fas fa-check"></i> WhatsApp Assistant</li>
+                        <li><i class="fas fa-check"></i> 1× Smart Analysis</li>
+                    </ul>
+                    <button class="btn-primary" style="width:100%" onclick="openWhatsApp()">Langgan</button>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="featured-badge">Paling Popular</div>
+                    <h4>Growth</h4>
+                    <div class="price">RM100<span><small>/bulan</small></span></div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> 250 Imbasan Resit / bulan</li>
+                        <li><i class="fas fa-check"></i> Unlimited Rekod Manual</li>
+                        <li><i class="fas fa-check"></i> 9× Imbasan Bank Statement</li>
+                        <li><i class="fas fa-check"></i> WhatsApp Assistant</li>
+                        <li><i class="fas fa-check"></i> 4× Smart Analysis</li>
+                    </ul>
+                    <button class="btn-primary" style="width:100%" onclick="openWhatsApp()">Langgan</button>
+                </div>
+                <div class="pricing-card">
+                    <h4>Ultimate</h4>
+                    <div class="price">RM150<span><small>/bulan</small></span></div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Unlimited Imbasan Resit</li>
+                        <li><i class="fas fa-check"></i> Unlimited Rekod Manual</li>
+                        <li><i class="fas fa-check"></i> Unlimited Bank Statement</li>
+                        <li><i class="fas fa-check"></i> Unlimited Smart Analysis</li>
+                        <li><i class="fas fa-check"></i> P&L Report + Balance Sheet</li>
+                        <li><i class="fas fa-check"></i> Reconciliation Features</li>
+                    </ul>
+                    <button class="btn-primary" style="width:100%" onclick="openWhatsApp()">Langgan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="container">
+        <div class="cta-box">
+            <h3>Sedia Urus Akaun Bisnes Dengan Lebih Mudah?</h3>
+            <p>Daftar percuma. Tiada kad kredit diperlukan. Mula hari ini.</p>
+            <button class="btn-success" style="padding: 14px 32px; border: none; border-radius: 40px; font-weight: 600; cursor: pointer;" onclick="openWhatsApp()"><i class="fab fa-whatsapp"></i> Daftar Percuma →</button>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p><strong>akauntanAI</strong> — Sistem Perakaunan Pintar untuk Bisnes Malaysia</p>
+        <p style="margin-top: 16px;"><i class="fab fa-whatsapp"></i> <span id="phoneDisplay">+60 12 345 6789</span> | <i class="far fa-envelope"></i> hello@akauntanai.my</p>
+        <p style="margin-top: 24px; font-size: 0.8rem;">© 2026 akauntanAI | Powered by OpenClaw</p>
+    </div>
+</footer>
+
+<script>
+    // WhatsApp Configuration - REPLACE WITH YOUR NUMBER
+    const whatsappPhone = "60123456789";
+    const defaultMessage = "Hi, saya berminat dengan akauntanAI. Tolong hantar maklumat lanjut dan percubaan percuma.";
+
+    function openWhatsApp() {
+        const url = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(defaultMessage)}`;
+        window.open(url, '_blank');
+    }
+
+    // Format phone display
+    const phoneSpan = document.getElementById('phoneDisplay');
+    if (phoneSpan && whatsappPhone !== "60123456789") {
+        phoneSpan.textContent = `+60 ${whatsappPhone.slice(2, 5)} ${whatsappPhone.slice(5, 8)} ${whatsappPhone.slice(8)}`;
+    }
+</script>
+
+</body>
+</html>

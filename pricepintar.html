@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>PricePintar | AI Price Intelligence for Contractors</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F8FAFE;
+            color: #1E293B;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .navbar {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 16px 0;
+        }
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2563EB, #0F2B6D);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .logo span {
+            color: #2563EB;
+        }
+        .btn-outline {
+            border: 1.5px solid #2563EB;
+            background: transparent;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #2563EB;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #2563EB;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-primary:hover {
+            background: #1D4ED8;
+        }
+        .btn-large {
+            padding: 14px 36px;
+            font-size: 1.1rem;
+        }
+        .btn-success {
+            background: #25D366;
+        }
+        .btn-success:hover {
+            background: #1DAE5A;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 60px 0 40px 0;
+        }
+        .hero-badge {
+            background: #EFF6FF;
+            color: #2563EB;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #0F172A;
+            margin-bottom: 24px;
+        }
+        .hero-title span {
+            color: #2563EB;
+        }
+        .hero-desc {
+            font-size: 1.2rem;
+            color: #475569;
+            max-width: 600px;
+            margin-bottom: 32px;
+        }
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-top: 24px;
+        }
+        .stat-item h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0F172A;
+        }
+        .stat-item p {
+            color: #5B6E8C;
+            font-size: 0.85rem;
+        }
+
+        /* WhatsApp Demo Message */
+        .demo-message {
+            background: white;
+            border-radius: 28px;
+            padding: 24px;
+            margin: 32px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 1px solid #E2E8F0;
+        }
+        .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #EFF6FF;
+        }
+        .demo-header i {
+            font-size: 2rem;
+            color: #25D366;
+        }
+        .demo-bubble {
+            background: #DCF8C6;
+            padding: 16px 20px;
+            border-radius: 20px;
+            border-bottom-left-radius: 4px;
+            margin-bottom: 16px;
+            max-width: 90%;
+        }
+        .demo-bubble.user {
+            background: #E4E6EB;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 4px;
+            margin-left: auto;
+        }
+        .demo-bubble p {
+            margin-bottom: 8px;
+        }
+        .demo-bubble small {
+            font-size: 0.7rem;
+            opacity: 0.6;
+        }
+
+        /* Features Grid */
+        .section {
+            padding: 64px 0;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .section-sub {
+            text-align: center;
+            color: #5B6E8C;
+            max-width: 700px;
+            margin: 0 auto 48px auto;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px 24px;
+            border: 1px solid #E9EEF5;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+        }
+        .card-icon {
+            font-size: 2rem;
+            color: #2563EB;
+            margin-bottom: 20px;
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+        .card p {
+            color: #475569;
+        }
+
+        /* Pricing */
+        .pricing-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 40px;
+        }
+        .pricing-card {
+            background: white;
+            border-radius: 32px;
+            padding: 32px;
+            flex: 1;
+            min-width: 260px;
+            border: 1px solid #E2E8F0;
+            transition: all 0.2s;
+        }
+        .pricing-card:hover {
+            border-color: #2563EB;
+        }
+        .pricing-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+        .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #0F172A;
+            margin: 16px 0 8px;
+        }
+        .price small {
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        .feature-list {
+            list-style: none;
+            margin: 24px 0;
+        }
+        .feature-list li {
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature-list i.fa-check {
+            color: #22C55E;
+        }
+
+        /* CTA */
+        .cta-box {
+            background: linear-gradient(135deg, #0F2B6D, #1E3A8A);
+            border-radius: 40px;
+            padding: 48px 40px;
+            color: white;
+            text-align: center;
+            margin: 48px 0;
+        }
+        .cta-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+        }
+        .cta-box p {
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+
+        footer {
+            background: #0F172A;
+            color: #94A3B8;
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 100;
+        }
+        .whatsapp-float i {
+            font-size: 32px;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-stats {
+                gap: 16px;
+            }
+            .demo-bubble {
+                max-width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="whatsapp-float" onclick="openWhatsApp()">
+    <i class="fab fa-whatsapp"></i>
+</div>
+
+<nav class="navbar">
+    <div class="container nav-flex">
+        <div class="logo">Price<span>Pintar</span></div>
+        <button class="btn-outline" onclick="openWhatsApp()">Contact Us</button>
+    </div>
+</nav>
+
+<main>
+    <div class="container hero">
+        <div class="hero-badge"><i class="fas fa-robot"></i> Malaysia's First AI Price Intelligence</div>
+        <h1 class="hero-title">WhatsApp your <span>material price</span> — Get instant answer with <span>pictures & comparison</span></h1>
+        <p class="hero-desc">Stop calling 5 suppliers. Just text our AI on WhatsApp. Get current prices, supplier locations, pictures, and buying recommendations — in seconds.</p>
+        <button class="btn-primary btn-large" onclick="openWhatsApp()"><i class="fab fa-whatsapp"></i> Try Free Demo →</button>
+        <div class="hero-stats">
+            <div class="stat-item"><h3>30 sec</h3><p>Average response</p></div>
+            <div class="stat-item"><h3>RM 850</h3><p>Saved monthly per user</p></div>
+            <div class="stat-item"><h3>200+</h3><p>Materials tracked</p></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="demo-message">
+            <div class="demo-header">
+                <i class="fab fa-whatsapp"></i>
+                <h3>See it in action</h3>
+            </div>
+            <div class="demo-bubble user">
+                <p><i class="fab fa-whatsapp"></i> <strong>You:</strong> "Cement price in Melaka"</p>
+                <small>Sent 9:41 AM</small>
+            </div>
+            <div class="demo-bubble">
+                <p><i class="fas fa-robot"></i> <strong>PricePintar AI:</strong></p>
+                <p>📊 <strong>CEMENT PRICE - MELAKA</strong><br>
+                💰 Current: <strong>RM 23.00 / bag</strong><br>
+                📈 vs last month: <strong>+RM 0.50 (+2.2%)</strong><br><br>
+                🏪 <strong>Top suppliers:</strong><br>
+                1️⃣ Kim Seng Hardware - RM 23.00<br>
+                2️⃣ Hardware Malaysia - RM 23.50<br>
+                3️⃣ Metro Hardware - RM 24.00<br><br>
+                🖼️ <strong>Price list picture attached</strong><br>
+                📍 Location: Jalan Munshi Abdullah<br>
+                ✅ <strong>Recommendation:</strong> Buy now - price expected to rise next month<br>
+                🔗 <a href="#" style="color:#2563EB;">Full dashboard →</a></p>
+                <small>Sent 9:41 AM</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h2 class="section-title">What you get with PricePintar</h2>
+            <p class="section-sub">Everything you need to make smarter purchasing decisions</p>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fab fa-whatsapp"></i></div>
+                    <h3>WhatsApp First</h3>
+                    <p>Text any material name. Get price, supplier, location, and picture — instantly. No apps to install.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Price Comparison</h3>
+                    <p>Compare prices across 3-5 suppliers in your area. See who offers the best deal today.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-image"></i></div>
+                    <h3>Picture Included</h3>
+                    <p>Every price comes with the actual price list picture — so you know it's real, not just text.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>Supplier Location</h3>
+                    <p>Get exact address and directions. No more "where is that hardware store again?"</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-chart-simple"></i></div>
+                    <h3>Price Trend & Recommendation</h3>
+                    <p>"Buy now" or "Wait" — AI analyzes market trends to help you time your purchase.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-link"></i></div>
+                    <h3>Web Dashboard Link</h3>
+                    <p>Every search includes a link to your personal dashboard with full price history and charts.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="cta-box">
+            <h3>Ready to stop wasting time calling suppliers?</h3>
+            <p>First month free. No commitment. See how fast you can get prices.</p>
+            <button class="btn-success" style="padding: 14px 32px; border: none; border-radius: 40px; font-weight: 600; cursor: pointer;" onclick="openWhatsApp()"><i class="fab fa-whatsapp"></i> Start Free Trial →</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h2 class="section-title">Simple pricing</h2>
+            <p class="section-sub">No hidden fees. Cancel anytime.</p>
+            <div class="pricing-row">
+                <div class="pricing-card">
+                    <h4>Basic</h4>
+                    <div class="price">RM 300<span><small>/month</small></span></div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> WhatsApp price lookup</li>
+                        <li><i class="fas fa-check"></i> 10 materials tracked</li>
+                        <li><i class="fas fa-check"></i> Basic comparison</li>
+                        <li><i class="fas fa-check"></i> 3 users</li>
+                    </ul>
+                    <button class="btn-primary" style="width:100%" onclick="openWhatsApp()">Subscribe</button>
+                </div>
+                <div class="pricing-card">
+                    <h4>Pro</h4>
+                    <div class="price">RM 800<span><small>/month</small></span></div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Everything in Basic</li>
+                        <li><i class="fas fa-check"></i> Unlimited materials</li>
+                        <li><i class="fas fa-check"></i> Pictures included</li>
+                        <li><i class="fas fa-check"></i> Supplier directory</li>
+                        <li><i class="fas fa-check"></i> Web dashboard</li>
+                        <li><i class="fas fa-check"></i> 10 users</li>
+                    </ul>
+                    <button class="btn-primary" style="width:100%" onclick="openWhatsApp()">Subscribe</button>
+                </div>
+                <div class="pricing-card">
+                    <h4>Enterprise</h4>
+                    <div class="price">Custom</div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Everything in Pro</li>
+                        <li><i class="fas fa-check"></i> Dedicated support</li>
+                        <li><i class="fas fa-check"></i> Custom materials</li>
+                        <li><i class="fas fa-check"></i> Quotation integration</li>
+                        <li><i class="fas fa-check"></i> Unlimited users</li>
+                    </ul>
+                    <button class="btn-primary" style="width:100%" onclick="openWhatsApp()">Contact Us</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-bottom: 64px;">
+        <div style="background: #EFF6FF; border-radius: 32px; padding: 32px; text-align: center;">
+            <i class="fas fa-database" style="font-size: 2rem; color:#2563EB;"></i>
+            <h3 style="margin: 12px 0;">Powered by real-time market data</h3>
+            <p style="color: #2C3E66; max-width: 600px; margin: 0 auto;">Our AI searches supplier websites, Facebook posts, and your own price lists to give you the most accurate, up-to-date prices in Malaysia.</p>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p><strong>PricePintar</strong> — AI Price Intelligence for Malaysian Contractors</p>
+        <p style="margin-top: 16px;"><i class="fab fa-whatsapp"></i> <span id="phoneDisplay">+60 12 345 6789</span> | <i class="far fa-envelope"></i> hello@pintar.my</p>
+        <p style="margin-top: 24px; font-size: 0.8rem;">© 2026 PricePintar | First month free trial</p>
+    </div>
+</footer>
+
+<script>
+    // REPLACE WITH YOUR ACTUAL WHATSAPP NUMBER (without +, Malaysia format: 60123456789)
+    const whatsappPhone = "60123456789";
+    const defaultMessage = "Hi, I'm interested in PricePintar. Please send me more info and a free trial.";
+
+    function openWhatsApp() {
+        const url = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(defaultMessage)}`;
+        window.open(url, '_blank');
+    }
+
+    // Format phone number for display
+    const phoneSpan = document.getElementById('phoneDisplay');
+    if (phoneSpan && whatsappPhone !== "60123456789") {
+        phoneSpan.textContent = `+60 ${whatsappPhone.slice(2, 5)} ${whatsappPhone.slice(5, 8)} ${whatsappPhone.slice(8)}`;
+    }
+</script>
+
+</body>
+</html>

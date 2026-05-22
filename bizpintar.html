@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>BizPintar | Complete ERP for Hardware Stores & Contractors</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F8FAFE;
+            color: #1E293B;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .navbar {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 16px 0;
+        }
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2563EB, #0F2B6D);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .logo span {
+            color: #2563EB;
+            background: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #334155;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #2563EB;
+        }
+        .btn-outline {
+            border: 1.5px solid #2563EB;
+            background: transparent;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #2563EB;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #2563EB;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-primary:hover {
+            background: #1D4ED8;
+        }
+        .btn-large {
+            padding: 14px 36px;
+            font-size: 1.1rem;
+        }
+        .btn-success {
+            background: #25D366;
+        }
+        .btn-success:hover {
+            background: #1DAE5A;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 60px 0 40px 0;
+        }
+        .hero-badge {
+            background: #EFF6FF;
+            color: #2563EB;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #0F172A;
+            margin-bottom: 24px;
+        }
+        .hero-title span {
+            color: #2563EB;
+        }
+        .hero-desc {
+            font-size: 1.2rem;
+            color: #475569;
+            max-width: 600px;
+            margin-bottom: 32px;
+        }
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-top: 24px;
+        }
+        .stat-item h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0F172A;
+        }
+        .stat-item p {
+            color: #5B6E8C;
+            font-size: 0.85rem;
+        }
+
+        /* WhatsApp Demo */
+        .demo-message {
+            background: white;
+            border-radius: 28px;
+            padding: 24px;
+            margin: 32px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 1px solid #E2E8F0;
+        }
+        .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #EFF6FF;
+        }
+        .demo-header i {
+            font-size: 2rem;
+            color: #25D366;
+        }
+        .demo-bubble {
+            background: #DCF8C6;
+            padding: 16px 20px;
+            border-radius: 20px;
+            border-bottom-left-radius: 4px;
+            margin-bottom: 16px;
+            max-width: 90%;
+        }
+        .demo-bubble.user {
+            background: #E4E6EB;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 4px;
+            margin-left: auto;
+        }
+        .demo-bubble p {
+            margin-bottom: 8px;
+        }
+        .demo-bubble small {
+            font-size: 0.7rem;
+            opacity: 0.6;
+        }
+        .demo-bubble ul {
+            margin: 8px 0 8px 20px;
+        }
+
+        /* Features Grid */
+        .section {
+            padding: 64px 0;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .section-sub {
+            text-align: center;
+            color: #5B6E8C;
+            max-width: 700px;
+            margin: 0 auto 48px auto;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px 24px;
+            border: 1px solid #E9EEF5;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+        }
+        .card-icon {
+            font-size: 2rem;
+            color: #2563EB;
+            margin-bottom: 20px;
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+        .card p {
+            color: #475569;
+        }
+
+        /* Module Highlights */
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+        .module-item {
+            background: #F1F5F9;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+        .module-item i {
+            font-size: 1.8rem;
+            color: #2563EB;
+            margin-bottom: 12px;
+        }
+        .module-item h4 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        /* Pricing */
+        .pricing-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 40px;
+        }
+        .pricing-card {
+            background: white;
+            border-radius: 32px;
+            padding: 32px;
+            flex: 1;
+            min-width: 260px;
+            border: 1px solid #E2E8F0;
+            transition: all 0.2s;
+        }
+        .pricing-card:hover {
+            border-color: #2563EB;
+        }
+        .pricing-card.featured {
+            border: 2px solid #2563EB;
+            position: relative;
+        }
+        .featured-badge {
+            position: absolute;
+            top: -12px;
+            right: 24px;
+            background: #2563EB;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .pricing-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+        .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #0F172A;
+            margin: 16px 0 8px;
+        }
+        .price small {
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        .price-hint {
+            font-size: 0.75rem;
+            color: #5B6E8C;
+            margin-bottom: 20px;
+        }
+        .feature-list {
+            list-style: none;
+            margin: 24px 0;
+        }
+        .feature-list li {
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature-list i.fa-check {
+            color: #22C55E;
+        }
+        .feature-list i.fa-times {
+            color: #EF4444;
+        }
+
+        /* CTA */
+        .cta-box {
+            background: linear-gradient(135deg, #0F2B6D, #1E3A8A);
+            border-radius: 40px;
+            padding: 48px 40px;
+            color: white;
+            text-align: center;
+            margin: 48px 0;
+        }
+        .cta-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+        }
+        .cta-box p {
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+
+        footer {
+            background: #0F172A;
+            color: #94A3B8;
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 100;
+        }
+        .whatsapp-float i {
+            font-size: 32px;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .module-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .demo-bubble {
+                max-width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="whatsapp-float" onclick="openWhatsApp()">
+    <i class="fab fa-whatsapp"></i>
+</div>
+
+<nav class="navbar">
+    <div class="container nav-flex">
+        <div class="logo">Biz<span>Pintar</span></div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <button class="btn-outline" onclick="openWhatsApp()">Contact Sales</button>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="container hero">
+        <div class="hero-badge"><i class="fas fa-building"></i> Complete ERP for Hardware & Construction</div>
+        <h1 class="hero-title">Run your <span>entire business</span> on WhatsApp</h1>
+        <p class="hero-desc">Inventory, Purchase Orders, Quotations, Invoices, Stock Alerts, Trend Analysis — all from your phone. No expensive software. No training needed.</p>
+        <button class="btn-primary btn-large" onclick="openWhatsApp()"><i class="fab fa-whatsapp"></i> Request Demo →</button>
+        <div class="hero-stats">
+            <div class="stat-item"><h3>98%</h3><p>Invoice accuracy</p></div>
+            <div class="stat-item"><h3>70%</h3><p>Faster procurement</p></div>
+            <div class="stat-item"><h3>RM 2k+</h3><p>Saved monthly</p></div>
+        </div>
+    </div>
+
+    <!-- What's Included Modules -->
+    <div class="container">
+        <div class="module-grid">
+            <div class="module-item"><i class="fas fa-boxes"></i><h4>Stock In/Out</h4><small>Receive & issue</small></div>
+            <div class="module-item"><i class="fas fa-chart-line"></i><h4>Trend Analysis</h4><small>Price & usage</small></div>
+            <div class="module-item"><i class="fas fa-bell"></i><h4>Low Stock Alerts</h4><small>Auto-notify</small></div>
+            <div class="module-item"><i class="fas fa-file-invoice"></i><h4>Invoices</h4><small>Scan & track</small></div>
+            <div class="module-item"><i class="fas fa-shopping-cart"></i><h4>Purchase Orders</h4><small>Create & submit</small></div>
+            <div class="module-item"><i class="fas fa-file-signature"></i><h4>Quotations</h4><small>RFQ & compare</small></div>
+            <div class="module-item"><i class="fas fa-chart-pie"></i><h4>Cost Dashboard</h4><small>Spend tracking</small></div>
+            <div class="module-item"><i class="fab fa-whatsapp"></i><h4>WhatsApp First</h4><small>No app needed</small></div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Demo -->
+    <div class="container">
+        <div class="demo-message">
+            <div class="demo-header">
+                <i class="fab fa-whatsapp"></i>
+                <h3>See it in action — WhatsApp Demo</h3>
+            </div>
+            <div class="demo-bubble user">
+                <p><i class="fab fa-whatsapp"></i> <strong>You:</strong> "Receive 500 bags cement into Main Warehouse"</p>
+                <small>Sent 9:41 AM</small>
+            </div>
+            <div class="demo-bubble">
+                <p><i class="fas fa-robot"></i> <strong>BizPintar AI:</strong></p>
+                <p>✅ Stock Entry Created (Draft)<br>
+                Item: Cement 50kg<br>
+                Quantity: 500 bags<br>
+                Warehouse: Main Warehouse<br>
+                Status: DRAFT - Ready for verification<br><br>
+                Type "confirm entry INV-001" to finalize.</p>
+                <small>Sent 9:41 AM</small>
+            </div>
+            <div class="demo-bubble user">
+                <p><i class="fab fa-whatsapp"></i> <strong>You:</strong> "Get quotes for 200 bags cement from Kim Seng, Hardware Malaysia, Metro"</p>
+                <small>Sent 9:43 AM</small>
+            </div>
+            <div class="demo-bubble">
+                <p><i class="fas fa-robot"></i> <strong>BizPintar AI:</strong></p>
+                <p>✅ RFQ Created (RFQ-001)<br><br>
+                📊 <strong>QUOTE COMPARISON</strong><br>
+                1️⃣ Kim Seng Hardware: RM23.00/bag<br>
+                2️⃣ Hardware Malaysia: RM23.50/bag<br>
+                3️⃣ Metro Hardware: RM24.00/bag<br><br>
+                ✅ Recommendation: Kim Seng Hardware<br>
+                Type "select quote 1" to create Purchase Order</p>
+                <small>Sent 9:44 AM</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="features">
+        <div class="container">
+            <h2 class="section-title">Everything you need to run your business</h2>
+            <p class="section-sub">One WhatsApp number. One dashboard. Complete control.</p>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-boxes"></i></div>
+                    <h3>Inventory Management</h3>
+                    <p>Track stock in/out across multiple warehouses. Real-time balances. Immutable audit trail — every transaction logged forever.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Trend & Price Analysis</h3>
+                    <p>See price trends over time. Forecast demand. Identify best suppliers. Make data-driven purchasing decisions.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-bell"></i></div>
+                    <h3>Smart Alerts</h3>
+                    <p>Automatic low stock notifications. Reorder suggestions based on usage patterns. Never run out of critical items.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-file-invoice"></i></div>
+                    <h3>Invoice Scanner (OCR)</h3>
+                    <p>Send invoice images or PDFs via WhatsApp. AI extracts data to Excel with 98% accuracy. Track payables automatically.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <h3>Purchase Orders & RFQ</h3>
+                    <p>Create POs, request quotes from multiple suppliers, compare bids, track deliveries — all via WhatsApp.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3>Cost Dashboard</h3>
+                    <p>Monthly spend tracking. Supplier cost comparison. Profit analysis. Everything in one place.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Module Breakdown -->
+    <div class="container">
+        <div style="background: white; border-radius: 28px; padding: 32px; margin: 32px 0; border: 1px solid #E2E8F0;">
+            <h3 style="text-align: center; margin-bottom: 24px;">📋 Complete Module Breakdown</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div>
+                    <p style="font-weight: 700; color: #2563EB;"><i class="fas fa-cube"></i> Inventory</p>
+                    <ul style="margin-left: 20px; color: #475569;">
+                        <li>Stock In / Out</li>
+                        <li>Warehouse transfers</li>
+                        <li>Batch tracking</li>
+                        <li>Real-time balances</li>
+                        <li>Immutable audit trail</li>
+                    </ul>
+                </div>
+                <div>
+                    <p style="font-weight: 700; color: #2563EB;"><i class="fas fa-chart-line"></i> Analytics</p>
+                    <ul style="margin-left: 20px; color: #475569;">
+                        <li>Price trend charts</li>
+                        <li>Usage patterns</li>
+                        <li>Demand forecasting</li>
+                        <li>Supplier comparison</li>
+                        <li>Cost tracking</li>
+                    </ul>
+                </div>
+                <div>
+                    <p style="font-weight: 700; color: #2563EB;"><i class="fas fa-file-invoice"></i> Procurement</p>
+                    <ul style="margin-left: 20px; color: #475569;">
+                        <li>RFQ / Quotes</li>
+                        <li>Purchase Orders</li>
+                        <li>Goods receipt</li>
+                        <li>Invoice matching</li>
+                        <li>Accounts payable</li>
+                    </ul>
+                </div>
+                <div>
+                    <p style="font-weight: 700; color: #2563EB;"><i class="fas fa-mobile-alt"></i> Access</p>
+                    <ul style="margin-left: 20px; color: #475569;">
+                        <li>WhatsApp commands</li>
+                        <li>Web dashboard</li>
+                        <li>Email reports</li>
+                        <li>Multi-user support</li>
+                        <li>24/7 availability</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="cta-box">
+            <h3>Ready to modernize your business operations?</h3>
+            <p>Join 50+ hardware stores and contractors using BizPintar to manage inventory and procurement from WhatsApp.</p>
+            <button class="btn-success" style="padding: 14px 32px; border: none; border-radius: 40px; font-weight: 600; cursor: pointer;" onclick="openWhatsApp()"><i class="fab fa-whatsapp"></i> Start Free Trial →</button>
+        </div>
+    </div>
+
+    <div class="section" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple, transparent pricing</h2>
+            <p class="section-sub">No hidden fees. Cancel anytime. First month free trial.</p>
+            <div class="pricing-row">
+                <div class="pricing-card">
+                    <h4>Basic</h4>
+                    <div class="price">RM 500<span><small>/month</small></span></div>
+                    <div class="price-hint">Best for small hardware stores</div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Stock In/Out</li>
+                        <li><i class="fas fa-check"></i> Balance checks</li>
+                        <li><i class="fas fa-check"></i> Basic alerts</li>
+                        <li><i class="fas fa-check"></i> 1 warehouse</li>
+                        <li><i class="fas fa-check"></i> 100 items tracked</li>
+                        <li><i class="fas fa-times"></i> POs / RFQ</li>
+                        <li><i class="fas fa-times"></i> Invoice OCR</li>
+                    </ul>
+                    <button class="btn-primary" style="width:100%" onclick="openWhatsApp()">Start Free Trial</button>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="featured-badge">MOST POPULAR</div>
+                    <h4>Professional</h4>
+                    <div class="price">RM 1,200<span><small>/month</small></span></div>
+                    <div class="price-hint">Best for contractors & suppliers</div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Everything in Basic</li>
+                        <li><i class="fas fa-check"></i> Purchase Orders</li>
+                        <li><i class="fas fa-check"></i> RFQ / Quotations</li>
+                        <li><i class="fas fa-check"></i> Invoice Scanner (OCR)</li>
+                        <li><i class="fas fa-check"></i> Multi-warehouse</li>
+                        <li><i class="fas fa-check"></i> Trend analysis</li>
+                        <li><i class="fas fa-check"></i> 500 items tracked</li>
+                    </ul>
+                    <button class="btn-primary" style="width:100%" onclick="openWhatsApp()">Start Free Trial</button>
+                </div>
+                <div class="pricing-card">
+                    <h4>Enterprise</h4>
+                    <div class="price">RM 2,500<span><small>/month</small></span></div>
+                    <div class="price-hint">Best for large operations</div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Everything in Professional</li>
+                        <li><i class="fas fa-check"></i> Full procure-to-pay</li>
+                        <li><i class="fas fa-check"></i> Accounts payable</li>
+                        <li><i class="fas fa-check"></i> Immutable audit trail</li>
+                        <li><i class="fas fa-check"></i> Custom reporting</li>
+                        <li><i class="fas fa-check"></i> Unlimited items</li>
+                        <li><i class="fas fa-check"></i> Dedicated support</li>
+                    </ul>
+                    <button class="btn-primary" style="width:100%" onclick="openWhatsApp()">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hardware Bundle -->
+    <div class="container" style="margin-bottom: 48px;">
+        <div style="background: #F1F5F9; border-radius: 32px; padding: 32px; text-align: center;">
+            <i class="fas fa-microchip" style="font-size: 2rem; color: #2563EB;"></i>
+            <h3 style="margin: 12px 0;">Need a complete hardware solution?</h3>
+            <p style="color: #2C3E66; max-width: 500px; margin: 0 auto;">Pre-configured Mini PC with BizPintar pre-installed. Plug and play. Your data stays on your premises.</p>
+            <p style="margin: 16px 0; font-size: 1.5rem; font-weight: 800;">RM 3,500 one-time</p>
+            <button class="btn-primary" onclick="openWhatsApp()"><i class="fab fa-whatsapp"></i> Inquire Now</button>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p><strong>BizPintar</strong> — Complete ERP for Hardware Stores & Contractors</p>
+        <p style="margin-top: 16px;"><i class="fab fa-whatsapp"></i> <span id="phoneDisplay">+60 12 345 6789</span> | <i class="far fa-envelope"></i> hello@bizpintar.my</p>
+        <p style="margin-top: 24px; font-size: 0.8rem;">© 2026 BizPintar | First month free trial | Cancel anytime</p>
+    </div>
+</footer>
+
+<script>
+    // REPLACE WITH YOUR ACTUAL WHATSAPP NUMBER (without +, Malaysia format: 60123456789)
+    const whatsappPhone = "60123456789";
+    const defaultMessage = "Hi, I'm interested in BizPintar ERP for my business. Please send me more info and a free trial.";
+
+    function openWhatsApp() {
+        const url = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(defaultMessage)}`;
+        window.open(url, '_blank');
+    }
+
+    // Format phone number for display
+    const phoneSpan = document.getElementById('phoneDisplay');
+    if (phoneSpan && whatsappPhone !== "60123456789") {
+        phoneSpan.textContent = `+60 ${whatsappPhone.slice(2, 5)} ${whatsappPhone.slice(5, 8)} ${whatsappPhone.slice(8)}`;
+    }
+</script>
+
+</body>
+</html>

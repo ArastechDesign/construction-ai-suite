@@ -1,0 +1,1043 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>BuildSmart AI | Complete Construction Business Suite</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Chart.js for analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F8FAFE;
+            color: #1E293B;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .navbar {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 16px 0;
+        }
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2563EB, #0F2B6D);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .logo span {
+            color: #2563EB;
+        }
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #334155;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #2563EB;
+        }
+        .btn-outline {
+            border: 1.5px solid #2563EB;
+            background: transparent;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #2563EB;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #2563EB;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-primary:hover {
+            background: #1D4ED8;
+        }
+        .btn-large {
+            padding: 14px 36px;
+            font-size: 1.1rem;
+        }
+        .btn-success {
+            background: #25D366;
+        }
+        .btn-success:hover {
+            background: #1DAE5A;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 60px 0 40px 0;
+        }
+        .hero-badge {
+            background: #EFF6FF;
+            color: #2563EB;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #0F172A;
+            margin-bottom: 24px;
+        }
+        .hero-title span {
+            color: #2563EB;
+        }
+        .hero-desc {
+            font-size: 1.2rem;
+            color: #475569;
+            max-width: 600px;
+            margin-bottom: 32px;
+        }
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-top: 24px;
+        }
+        .stat-item h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0F172A;
+        }
+        .stat-item p {
+            color: #5B6E8C;
+            font-size: 0.85rem;
+        }
+
+        /* Section Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0 32px;
+        }
+        .tab-btn {
+            background: white;
+            border: 1px solid #E2E8F0;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: #2563EB;
+            color: white;
+            border-color: #2563EB;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* WhatsApp Demo */
+        .demo-message {
+            background: white;
+            border-radius: 28px;
+            padding: 24px;
+            margin: 32px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 1px solid #E2E8F0;
+        }
+        .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #EFF6FF;
+        }
+        .demo-header i {
+            font-size: 2rem;
+            color: #25D366;
+        }
+        .demo-bubble {
+            background: #DCF8C6;
+            padding: 16px 20px;
+            border-radius: 20px;
+            border-bottom-left-radius: 4px;
+            margin-bottom: 16px;
+            max-width: 90%;
+        }
+        .demo-bubble.user {
+            background: #E4E6EB;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 4px;
+            margin-left: auto;
+        }
+        .demo-bubble p {
+            margin-bottom: 8px;
+        }
+        .demo-bubble small {
+            font-size: 0.7rem;
+            opacity: 0.6;
+        }
+        .demo-bubble ul {
+            margin: 8px 0 8px 20px;
+        }
+
+        /* Features Grid */
+        .section {
+            padding: 48px 0;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .section-sub {
+            text-align: center;
+            color: #5B6E8C;
+            max-width: 700px;
+            margin: 0 auto 48px auto;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px 24px;
+            border: 1px solid #E9EEF5;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+        }
+        .card-icon {
+            font-size: 2rem;
+            color: #2563EB;
+            margin-bottom: 20px;
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+        .card p {
+            color: #475569;
+        }
+
+        /* BOQ Calculator */
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        .calc-card {
+            background: white;
+            border-radius: 24px;
+            padding: 20px;
+            border: 1px solid #E2E8F0;
+        }
+        .calc-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #EFF6FF;
+        }
+        .input-group {
+            margin-bottom: 14px;
+        }
+        .input-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #475569;
+        }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        .result-value {
+            font-weight: 800;
+            color: #2563EB;
+        }
+
+        /* Module Grid */
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+        .module-item {
+            background: #F1F5F9;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+        .module-item i {
+            font-size: 1.8rem;
+            color: #2563EB;
+            margin-bottom: 12px;
+        }
+        .module-item h4 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        /* Pricing */
+        .pricing-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 40px;
+        }
+        .pricing-card {
+            background: white;
+            border-radius: 32px;
+            padding: 32px;
+            flex: 1;
+            min-width: 260px;
+            border: 1px solid #E2E8F0;
+            transition: all 0.2s;
+        }
+        .pricing-card:hover {
+            border-color: #2563EB;
+        }
+        .pricing-card.featured {
+            border: 2px solid #2563EB;
+            position: relative;
+        }
+        .featured-badge {
+            position: absolute;
+            top: -12px;
+            right: 24px;
+            background: #2563EB;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #0F172A;
+            margin: 16px 0 8px;
+        }
+        .price small {
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        .feature-list {
+            list-style: none;
+            margin: 24px 0;
+        }
+        .feature-list li {
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature-list i.fa-check {
+            color: #22C55E;
+        }
+
+        /* Trend Chart */
+        .chart-container {
+            background: white;
+            border-radius: 28px;
+            padding: 24px;
+            margin: 32px 0;
+            border: 1px solid #E2E8F0;
+        }
+        canvas {
+            max-height: 300px;
+        }
+
+        /* CTA */
+        .cta-box {
+            background: linear-gradient(135deg, #0F2B6D, #1E3A8A);
+            border-radius: 40px;
+            padding: 48px 40px;
+            color: white;
+            text-align: center;
+            margin: 48px 0;
+        }
+        .cta-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+        }
+
+        footer {
+            background: #0F172A;
+            color: #94A3B8;
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 100;
+        }
+        .whatsapp-float i {
+            font-size: 32px;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .module-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .tabs {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .tab-btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="whatsapp-float" onclick="openWhatsApp()">
+    <i class="fab fa-whatsapp"></i>
+</div>
+
+<nav class="navbar">
+    <div class="container nav-flex">
+        <div class="logo">Build<span>Smart AI</span></div>
+        <div class="nav-links">
+            <a href="#" onclick="showTab('price')">Price Intel</a>
+            <a href="#" onclick="showTab('boq')">BOQ Calculator</a>
+            <a href="#" onclick="showTab('erp')">ERP Suite</a>
+            <button class="btn-outline" onclick="openWhatsApp()">Contact Sales</button>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="container hero">
+        <div class="hero-badge"><i class="fas fa-robot"></i> Malaysia's #1 AI Platform for Construction</div>
+        <h1 class="hero-title">Run your <span>entire construction business</span> on WhatsApp</h1>
+        <p class="hero-desc">Price intelligence • BOQ calculator • Inventory management • Purchase orders • Invoices • Stock alerts — all from your phone. No expensive software. No training needed.</p>
+        <button class="btn-primary btn-large" onclick="openWhatsApp()"><i class="fab fa-whatsapp"></i> Start Free Trial →</button>
+        <div class="hero-stats">
+            <div class="stat-item"><h3>70%</h3><p>Faster procurement</p></div>
+            <div class="stat-item"><h3>98%</h3><p>Invoice accuracy</p></div>
+            <div class="stat-item"><h3>RM 2k+</h3><p>Saved monthly</p></div>
+        </div>
+    </div>
+
+    <!-- Tabs Navigation -->
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('price')"><i class="fas fa-chart-line"></i> Price Intelligence</button>
+            <button class="tab-btn" onclick="showTab('boq')"><i class="fas fa-calculator"></i> BOQ Calculator</button>
+            <button class="tab-btn" onclick="showTab('erp')"><i class="fas fa-building"></i> ERP Suite</button>
+        </div>
+    </div>
+
+    <!-- ==================== TAB 1: PRICE INTELLIGENCE ==================== -->
+    <div id="priceTab" class="tab-content active">
+        <div class="container">
+            <!-- WhatsApp Demo -->
+            <div class="demo-message">
+                <div class="demo-header">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>Price Intelligence in Action — WhatsApp Demo</h3>
+                </div>
+                <div class="demo-bubble user">
+                    <p><i class="fab fa-whatsapp"></i> <strong>You:</strong> "Cement price in Melaka"</p>
+                    <small>Sent 9:41 AM</small>
+                </div>
+                <div class="demo-bubble">
+                    <p><i class="fas fa-robot"></i> <strong>BuildSmart AI:</strong></p>
+                    <p>📊 <strong>CEMENT PRICE - MELAKA</strong><br>
+                    💰 Current: <strong>RM 23.00 / bag</strong><br>
+                    📈 vs last month: <strong>+RM 0.50 (+2.2%)</strong><br><br>
+                    🏪 <strong>Top suppliers:</strong><br>
+                    1️⃣ Kim Seng Hardware - RM 23.00<br>
+                    2️⃣ Hardware Malaysia - RM 23.50<br>
+                    3️⃣ Metro Hardware - RM 24.00<br><br>
+                    🖼️ <strong>Price list picture attached</strong><br>
+                    📍 Location: Jalan Munshi Abdullah<br>
+                    ✅ <strong>Recommendation:</strong> Buy now - price expected to rise<br>
+                    🔗 <a href="#" style="color:#2563EB;">Full dashboard →</a></p>
+                    <small>Sent 9:41 AM</small>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fab fa-whatsapp"></i></div>
+                    <h3>WhatsApp First</h3>
+                    <p>Text any material name. Get price, supplier, location, and picture — instantly. No apps to install.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Price Comparison</h3>
+                    <p>Compare prices across 3-5 suppliers in your area. See who offers the best deal today.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-image"></i></div>
+                    <h3>Picture Included</h3>
+                    <p>Every price comes with the actual price list picture — so you know it's real.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>Supplier Location</h3>
+                    <p>Get exact address and directions. No more "where is that hardware store?"</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-chart-simple"></i></div>
+                    <h3>Price Trend & Recommendation</h3>
+                    <p>"Buy now" or "Wait" — AI analyzes market trends to help you time your purchase.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-link"></i></div>
+                    <h3>Web Dashboard Link</h3>
+                    <p>Every search includes a link to your personal dashboard with full price history and charts.</p>
+                </div>
+            </div>
+
+            <!-- Price Trend Chart -->
+            <div class="chart-container">
+                <h3 style="margin-bottom: 20px;">📈 Cement Price Trend (Melaka)</h3>
+                <canvas id="priceTrendChart" width="800" height="300"></canvas>
+                <p style="text-align: center; margin-top: 16px; color: #5B6E8C; font-size: 0.8rem;">Live data from supplier price lists and market monitoring</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TAB 2: BOQ CALCULATOR ==================== -->
+    <div id="boqTab" class="tab-content">
+        <div class="container">
+            <h2 class="section-title">Construction BOQ Calculator</h2>
+            <p class="section-sub">Calculate material quantities and costs instantly — concrete, formwork, rebar, bricks, plaster, paint, tiles, wiring</p>
+
+            <div class="calc-grid">
+                <!-- Concrete -->
+                <div class="calc-card">
+                    <h4><i class="fas fa-cube"></i> Concrete</h4>
+                    <div class="input-group"><label>Length (m)</label><input type="number" id="concreteLength" value="10" step="0.1"></div>
+                    <div class="input-group"><label>Width (m)</label><input type="number" id="concreteWidth" value="10" step="0.1"></div>
+                    <div class="input-group"><label>Thickness (m)</label><input type="number" id="concreteThick" value="0.15" step="0.05"></div>
+                    <div class="input-group"><label>Price (RM/m³)</label><input type="number" id="concretePrice" value="320" step="10"></div>
+                    <div class="result-item"><span>Volume:</span><span class="result-value" id="concreteVol">0</span><span> m³</span></div>
+                    <div class="result-item"><span>Cost:</span><span class="result-value" id="concreteCost">0</span><span> RM</span></div>
+                </div>
+
+                <!-- Formwork -->
+                <div class="calc-card">
+                    <h4><i class="fas fa-border-all"></i> Formwork</h4>
+                    <div class="input-group"><label>Length (m)</label><input type="number" id="formworkLength" value="10" step="0.1"></div>
+                    <div class="input-group"><label>Width (m)</label><input type="number" id="formworkWidth" value="10" step="0.1"></div>
+                    <div class="input-group"><label>Height (m)</label><input type="number" id="formworkHeight" value="0.15" step="0.05"></div>
+                    <div class="input-group"><label>Price (RM/m²)</label><input type="number" id="formworkPrice" value="65" step="5"></div>
+                    <div class="result-item"><span>Area:</span><span class="result-value" id="formworkArea">0</span><span> m²</span></div>
+                    <div class="result-item"><span>Cost:</span><span class="result-value" id="formworkCost">0</span><span> RM</span></div>
+                </div>
+
+                <!-- Rebar -->
+                <div class="calc-card">
+                    <h4><i class="fas fa-chart-line"></i> Rebar</h4>
+                    <div class="input-group"><label>Concrete Volume (m³)</label><input type="number" id="rebarVolume" value="15" step="1"></div>
+                    <div class="input-group"><label>Density (kg/m³)</label><input type="number" id="rebarDensity" value="120" step="10"></div>
+                    <div class="input-group"><label>Price (RM/kg)</label><input type="number" id="rebarPrice" value="3.80" step="0.1"></div>
+                    <div class="result-item"><span>Weight:</span><span class="result-value" id="rebarWeight">0</span><span> kg</span></div>
+                    <div class="result-item"><span>Cost:</span><span class="result-value" id="rebarCost">0</span><span> RM</span></div>
+                </div>
+
+                <!-- Bricks -->
+                <div class="calc-card">
+                    <h4><i class="fas fa-th-large"></i> Bricks</h4>
+                    <div class="input-group"><label>Wall Length (m)</label><input type="number" id="brickLength" value="20" step="1"></div>
+                    <div class="input-group"><label>Wall Height (m)</label><input type="number" id="brickHeight" value="3" step="0.5"></div>
+                    <div class="input-group"><label>Bricks per m²</label><input type="number" id="brickPerSqm" value="65" step="5"></div>
+                    <div class="input-group"><label>Price (RM/1000)</label><input type="number" id="brickPrice" value="450" step="50"></div>
+                    <div class="result-item"><span>Quantity:</span><span class="result-value" id="brickQty">0</span><span> pcs</span></div>
+                    <div class="result-item"><span>Cost:</span><span class="result-value" id="brickCost">0</span><span> RM</span></div>
+                </div>
+
+                <!-- Plaster -->
+                <div class="calc-card">
+                    <h4><i class="fas fa-fill-drip"></i> Plaster</h4>
+                    <div class="input-group"><label>Wall Area (m²)</label><input type="number" id="plasterArea" value="120" step="10"></div>
+                    <div class="input-group"><label>Thickness (mm)</label><input type="number" id="plasterThick" value="20" step="5"></div>
+                    <div class="input-group"><label>Price (RM/m²)</label><input type="number" id="plasterPrice" value="12" step="1"></div>
+                    <div class="result-item"><span>Volume:</span><span class="result-value" id="plasterVol">0</span><span> m³</span></div>
+                    <div class="result-item"><span>Cost:</span><span class="result-value" id="plasterCost">0</span><span> RM</span></div>
+                </div>
+
+                <!-- Paint -->
+                <div class="calc-card">
+                    <h4><i class="fas fa-paint-roller"></i> Paint</h4>
+                    <div class="input-group"><label>Area (m²)</label><input type="number" id="paintArea" value="240" step="10"></div>
+                    <div class="input-group"><label>Coverage (m²/L)</label><input type="number" id="paintCoverage" value="10" step="1"></div>
+                    <div class="input-group"><label>Price (RM/L)</label><input type="number" id="paintPrice" value="18" step="2"></div>
+                    <div class="input-group"><label>Coats</label><input type="number" id="paintCoats" value="2" step="1"></div>
+                    <div class="result-item"><span>Paint:</span><span class="result-value" id="paintLitres">0</span><span> L</span></div>
+                    <div class="result-item"><span>Cost:</span><span class="result-value" id="paintCost">0</span><span> RM</span></div>
+                </div>
+
+                <!-- Tiles -->
+                <div class="calc-card">
+                    <h4><i class="fas fa-border-all"></i> Tiles</h4>
+                    <div class="input-group"><label>Floor Area (m²)</label><input type="number" id="tileArea" value="80" step="5"></div>
+                    <div class="input-group"><label>Tile Size (cm)</label><select id="tileSize"><option value="30">30x30cm</option><option value="40">40x40cm</option><option value="60">60x60cm</option></select></div>
+                    <div class="input-group"><label>Price (RM/m²)</label><input type="number" id="tilePrice" value="45" step="5"></div>
+                    <div class="result-item"><span>Tiles:</span><span class="result-value" id="tileQty">0</span><span> pcs</span></div>
+                    <div class="result-item"><span>Cost:</span><span class="result-value" id="tileCost">0</span><span> RM</span></div>
+                </div>
+
+                <!-- Wiring -->
+                <div class="calc-card">
+                    <h4><i class="fas fa-bolt"></i> Wiring (1.5mm)</h4>
+                    <div class="input-group"><label>Length (m)</label><input type="number" id="wiringLength" value="200" step="10"></div>
+                    <div class="input-group"><label>Price (RM/m)</label><input type="number" id="wiringPrice" value="0.85" step="0.05"></div>
+                    <div class="result-item"><span>Length:</span><span class="result-value" id="wiringMeters">0</span><span> m</span></div>
+                    <div class="result-item"><span>Cost:</span><span class="result-value" id="wiringCost">0</span><span> RM</span></div>
+                </div>
+            </div>
+
+            <!-- Labour & Markup -->
+            <div class="calc-card" style="margin-bottom: 24px;">
+                <h4><i class="fas fa-users"></i> Labour & Markup</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                    <div class="input-group"><label>Labour Cost (RM)</label><input type="number" id="labourCost" value="5000" step="500"></div>
+                    <div class="input-group"><label>Equipment (RM)</label><input type="number" id="equipmentCost" value="1200" step="200"></div>
+                    <div class="input-group"><label>Overhead & Profit (%)</label><input type="number" id="markupPercent" value="15" step="1"></div>
+                    <div class="input-group"><label>Contingency (%)</label><input type="number" id="contingencyPercent" value="5" step="1"></div>
+                </div>
+            </div>
+
+            <!-- BOQ Summary -->
+            <div style="background: linear-gradient(135deg, #0F2B6D, #1E3A8A); border-radius: 28px; padding: 28px; color: white;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px;">
+                    <div><div style="font-size:0.7rem; opacity:0.8;">Concrete</div><div id="sumConcrete" class="result-value" style="color:white; font-size:1rem;">RM0</div></div>
+                    <div><div style="font-size:0.7rem; opacity:0.8;">Formwork</div><div id="sumFormwork" style="color:white; font-size:1rem;">RM0</div></div>
+                    <div><div style="font-size:0.7rem; opacity:0.8;">Rebar</div><div id="sumRebar" style="color:white; font-size:1rem;">RM0</div></div>
+                    <div><div style="font-size:0.7rem; opacity:0.8;">Bricks</div><div id="sumBricks" style="color:white; font-size:1rem;">RM0</div></div>
+                    <div><div style="font-size:0.7rem; opacity:0.8;">Plaster</div><div id="sumPlaster" style="color:white; font-size:1rem;">RM0</div></div>
+                    <div><div style="font-size:0.7rem; opacity:0.8;">Paint</div><div id="sumPaint" style="color:white; font-size:1rem;">RM0</div></div>
+                    <div><div style="font-size:0.7rem; opacity:0.8;">Tiles</div><div id="sumTiles" style="color:white; font-size:1rem;">RM0</div></div>
+                    <div><div style="font-size:0.7rem; opacity:0.8;">Wiring</div><div id="sumWiring" style="color:white; font-size:1rem;">RM0</div></div>
+                </div>
+                <div style="text-align: right; margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.2);">
+                    <div id="grandTotal" style="font-size: 1.5rem; font-weight: 800;">GRAND TOTAL: RM 0</div>
+                    <div style="font-size:0.7rem;" id="breakdownText"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TAB 3: ERP SUITE ==================== -->
+    <div id="erpTab" class="tab-content">
+        <div class="container">
+            <!-- Module Grid -->
+            <div class="module-grid">
+                <div class="module-item"><i class="fas fa-boxes"></i><h4>Stock In/Out</h4><small>Receive & issue</small></div>
+                <div class="module-item"><i class="fas fa-chart-line"></i><h4>Trend Analysis</h4><small>Price & usage</small></div>
+                <div class="module-item"><i class="fas fa-bell"></i><h4>Low Stock Alerts</h4><small>Auto-notify</small></div>
+                <div class="module-item"><i class="fas fa-file-invoice"></i><h4>Invoices</h4><small>Scan & track</small></div>
+                <div class="module-item"><i class="fas fa-shopping-cart"></i><h4>Purchase Orders</h4><small>Create & submit</small></div>
+                <div class="module-item"><i class="fas fa-file-signature"></i><h4>Quotations</h4><small>RFQ & compare</small></div>
+                <div class="module-item"><i class="fas fa-chart-pie"></i><h4>Cost Dashboard</h4><small>Spend tracking</small></div>
+                <div class="module-item"><i class="fab fa-whatsapp"></i><h4>WhatsApp First</h4><small>No app needed</small></div>
+            </div>
+
+            <!-- ERP WhatsApp Demo -->
+            <div class="demo-message">
+                <div class="demo-header">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>ERP Suite in Action — WhatsApp Demo</h3>
+                </div>
+                <div class="demo-bubble user">
+                    <p><i class="fab fa-whatsapp"></i> <strong>You:</strong> "Receive 500 bags cement into Main Warehouse"</p>
+                    <small>Sent 9:41 AM</small>
+                </div>
+                <div class="demo-bubble">
+                    <p><i class="fas fa-robot"></i> <strong>BuildSmart AI:</strong></p>
+                    <p>✅ Stock Entry Created (Draft)<br>
+                    Item: Cement 50kg<br>
+                    Quantity: 500 bags<br>
+                    Warehouse: Main Warehouse<br>
+                    Status: DRAFT - Ready for verification<br><br>
+                    Type "confirm entry INV-001" to finalize.</p>
+                    <small>Sent 9:41 AM</small>
+                </div>
+                <div class="demo-bubble user">
+                    <p><i class="fab fa-whatsapp"></i> <strong>You:</strong> "Get quotes for 200 bags cement from Kim Seng, Hardware Malaysia, Metro"</p>
+                    <small>Sent 9:43 AM</small>
+                </div>
+                <div class="demo-bubble">
+                    <p><i class="fas fa-robot"></i> <strong>BuildSmart AI:</strong></p>
+                    <p>✅ RFQ Created (RFQ-001)<br><br>
+                    📊 <strong>QUOTE COMPARISON</strong><br>
+                    1️⃣ Kim Seng Hardware: RM23.00/bag<br>
+                    2️⃣ Hardware Malaysia: RM23.50/bag<br>
+                    3️⃣ Metro Hardware: RM24.00/bag<br><br>
+                    ✅ Recommendation: Kim Seng Hardware<br>
+                    Type "select quote 1" to create Purchase Order</p>
+                    <small>Sent 9:44 AM</small>
+                </div>
+            </div>
+
+            <!-- ERP Features -->
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-boxes"></i></div>
+                    <h3>Inventory Management</h3>
+                    <p>Track stock in/out across multiple warehouses. Real-time balances. Immutable audit trail — every transaction logged forever.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Trend & Price Analysis</h3>
+                    <p>See price trends over time. Forecast demand. Identify best suppliers. Make data-driven purchasing decisions.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-bell"></i></div>
+                    <h3>Smart Alerts</h3>
+                    <p>Automatic low stock notifications. Reorder suggestions based on usage patterns. Never run out of critical items.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-file-invoice"></i></div>
+                    <h3>Invoice Scanner (OCR)</h3>
+                    <p>Send invoice images or PDFs via WhatsApp. AI extracts data to Excel with 98% accuracy. Track payables automatically.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <h3>Purchase Orders & RFQ</h3>
+                    <p>Create POs, request quotes from multiple suppliers, compare bids, track deliveries — all via WhatsApp.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3>Cost Dashboard</h3>
+                    <p>Monthly spend tracking. Supplier cost comparison. Profit analysis. Everything in one place.</p>
+                </div>
+            </div>
+
+            <!-- Module Breakdown -->
+            <div style="background: white; border-radius: 28px; padding: 32px; margin: 32px 0; border: 1px solid #E2E8F0;">
+                <h3 style="text-align: center; margin-bottom: 24px;">📋 Complete Module Breakdown</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div><p style="font-weight: 700; color: #2563EB;"><i class="fas fa-cube"></i> Inventory</p>
+                        <ul style="margin-left: 20px; color: #475569;"><li>Stock In / Out</li><li>Warehouse transfers</li><li>Real-time balances</li><li>Immutable audit trail</li></ul>
+                    </div>
+                    <div><p style="font-weight: 700; color: #2563EB;"><i class="fas fa-chart-line"></i> Analytics</p>
+                        <ul style="margin-left: 20px; color: #475569;"><li>Price trend charts</li><li>Usage patterns</li><li>Supplier comparison</li><li>Cost tracking</li></ul>
+                    </div>
+                    <div><p style="font-weight: 700; color: #2563EB;"><i class="fas fa-file-invoice"></i> Procurement</p>
+                        <ul style="margin-left: 20px; color: #475569;"><li>RFQ / Quotes</li><li>Purchase Orders</li><li>Goods receipt</li><li>Accounts payable</li></ul>
+                    </div>
+                    <div><p style="font-weight: 700; color: #2563EB;"><i class="fas fa-mobile-alt"></i> Access</p>
+                        <ul style="margin-left: 20px; color: #475569;"><li>WhatsApp commands</li><li>Web dashboard</li><li>Multi-user support</li><li>24/7 availability</li></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PRICING SECTION (Common to all tabs) ==================== -->
+    <div class="container">
+        <h2 class="section-title">Simple, transparent pricing</h2>
+        <p class="section-sub">No hidden fees. Cancel anytime. First month free trial.</p>
+        <div class="pricing-row">
+            <div class="pricing-card">
+                <h4>Price Intel</h4>
+                <div class="price">RM 300<span><small>/month</small></span></div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> WhatsApp price lookup</li>
+                    <li><i class="fas fa-check"></i> 10 materials tracked</li>
+                    <li><i class="fas fa-check"></i> Basic comparison</li>
+                    <li><i class="fas fa-check"></i> Price trend charts</li>
+                </ul>
+                <button class="btn-primary" style="width:100%" onclick="openWhatsApp()">Start Free Trial</button>
+            </div>
+            <div class="pricing-card">
+                <h4>BOQ Calculator</h4>
+                <div class="price">RM 400<span><small>/month</small></span></div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> 8 material calculators</li>
+                    <li><i class="fas fa-check"></i> Labour & markup</li>
+                    <li><i class="fas fa-check"></i> Printable BOQ</li>
+                    <li><i class="fas fa-check"></i> WhatsApp delivery</li>
+                </ul>
+                <button class="btn-primary" style="width:100%" onclick="openWhatsApp()">Start Free Trial</button>
+            </div>
+            <div class="pricing-card featured">
+                <div class="featured-badge">BEST VALUE</div>
+                <h4>Full Suite</h4>
+                <div class="price">RM 800<span><small>/month</small></span></div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> Price Intel + BOQ + ERP</li>
+                    <li><i class="fas fa-check"></i> Unlimited materials</li>
+                    <li><i class="fas fa-check"></i> POs, RFQs, Invoices</li>
+                    <li><i class="fas fa-check"></i> Stock alerts & trends</li>
+                    <li><i class="fas fa-check"></i> 10 users included</li>
+                </ul>
+                <button class="btn-primary" style="width:100%" onclick="openWhatsApp()">Start Free Trial</button>
+            </div>
+            <div class="pricing-card">
+                <h4>Enterprise</h4>
+                <div class="price">Custom</div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> Everything in Full Suite</li>
+                    <li><i class="fas fa-check"></i> Dedicated support</li>
+                    <li><i class="fas fa-check"></i> Hardware bundle</li>
+                    <li><i class="fas fa-check"></i> Unlimited users</li>
+                </ul>
+                <button class="btn-primary" style="width:100%" onclick="openWhatsApp()">Contact Sales</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hardware Bundle -->
+    <div class="container" style="margin-bottom: 48px;">
+        <div style="background: #F1F5F9; border-radius: 32px; padding: 32px; text-align: center;">
+            <i class="fas fa-microchip" style="font-size: 2rem; color: #2563EB;"></i>
+            <h3 style="margin: 12px 0;">Need a complete hardware solution?</h3>
+            <p style="color: #2C3E66; max-width: 500px; margin: 0 auto;">Pre-configured Mini PC with BuildSmart AI pre-installed. Plug and play. Your data stays on your premises.</p>
+            <p style="margin: 16px 0; font-size: 1.5rem; font-weight: 800;">RM 3,500 one-time</p>
+            <button class="btn-primary" onclick="openWhatsApp()"><i class="fab fa-whatsapp"></i> Inquire Now</button>
+        </div>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="container">
+        <div class="cta-box">
+            <h3>Ready to transform your construction business?</h3>
+            <p>Join 50+ hardware stores and contractors using BuildSmart AI to manage prices, BOQs, inventory, and procurement from WhatsApp.</p>
+            <button class="btn-success" style="padding: 14px 32px; border: none; border-radius: 40px; font-weight: 600; cursor: pointer;" onclick="openWhatsApp()"><i class="fab fa-whatsapp"></i> Start Free Trial →</button>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p><strong>BuildSmart AI</strong> — Complete Construction Business Suite</p>
+        <p style="margin-top: 16px;"><i class="fab fa-whatsapp"></i> <span id="phoneDisplay">+60 12 345 6789</span> | <i class="far fa-envelope"></i> hello@buildsmart.ai</p>
+        <p style="margin-top: 24px; font-size: 0.8rem;">© 2026 BuildSmart AI | First month free trial | Cancel anytime</p>
+    </div>
+</footer>
+
+<script>
+    // WhatsApp Configuration
+    const whatsappPhone = "60123456789"; // REPLACE WITH YOUR NUMBER
+    const defaultMessage = "Hi, I'm interested in BuildSmart AI. Please send me more info and a free trial.";
+
+    function openWhatsApp() {
+        const url = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(defaultMessage)}`;
+        window.open(url, '_blank');
+    }
+
+    // Tab Switching
+    function showTab(tabName) {
+        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        if (tabName === 'price') document.getElementById('priceTab').classList.add('active');
+        if (tabName === 'boq') document.getElementById('boqTab').classList.add('active');
+        if (tabName === 'erp') document.getElementById('erpTab').classList.add('active');
+        
+        const btns = document.querySelectorAll('.tab-btn');
+        if (tabName === 'price') btns[0].classList.add('active');
+        if (tabName === 'boq') btns[1].classList.add('active');
+        if (tabName === 'erp') btns[2].classList.add('active');
+    }
+
+    // Price Trend Chart
+    const ctx = document.getElementById('priceTrendChart')?.getContext('2d');
+    if (ctx) {
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Cement Price (RM/bag)',
+                    data: [22.00, 22.50, 23.00, 22.80, 22.50, 23.00],
+                    borderColor: '#2563EB',
+                    backgroundColor: 'rgba(37,99,235,0.1)',
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: { legend: { position: 'top' } }
+            }
+        });
+    }
+
+    // BOQ Calculator Functions
+    function calculateBOQ() {
+        // Concrete
+        let vol = (document.getElementById('concreteLength')?.value || 0) * (document.getElementById('concreteWidth')?.value || 0) * (document.getElementById('concreteThick')?.value || 0);
+        let concreteCost = vol * (document.getElementById('concretePrice')?.value || 0);
+        if (document.getElementById('concreteVol')) document.getElementById('concreteVol').innerText = vol.toFixed(2);
+        if (document.getElementById('concreteCost')) document.getElementById('concreteCost').innerText = concreteCost.toFixed(2);
+        
+        // Formwork
+        let perimeter = 2 * ((document.getElementById('formworkLength')?.value || 0) + (document.getElementById('formworkWidth')?.value || 0));
+        let formArea = perimeter * (document.getElementById('formworkHeight')?.value || 0) + ((document.getElementById('formworkLength')?.value || 0) * (document.getElementById('formworkWidth')?.value || 0));
+        let formworkCost = formArea * (document.getElementById('formworkPrice')?.value || 0);
+        if (document.getElementById('formworkArea')) document.getElementById('formworkArea').innerText = formArea.toFixed(2);
+        if (document.getElementById('formworkCost')) document.getElementById('formworkCost').innerText = formworkCost.toFixed(2);
+        
+        // Rebar
+        let rebarWeight = (document.getElementById('rebarVolume')?.value || 0) * (document.getElementById('rebarDensity')?.value || 0);
+        let rebarCost = rebarWeight * (document.getElementById('rebarPrice')?.value || 0);
+        if (document.getElementById('rebarWeight')) document.getElementById('rebarWeight').innerText = rebarWeight.toFixed(2);
+        if (document.getElementById('rebarCost')) document.getElementById('rebarCost').innerText = rebarCost.toFixed(2);
+        
+        // Bricks
+        let brickArea = (document.getElementById('brickLength')?.value || 0) * (document.getElementById('brickHeight')?.value || 0);
+        let brickQty = brickArea * (document.getElementById('brickPerSqm')?.value || 0);
+        let brickCost = (brickQty / 1000) * (document.getElementById('brickPrice')?.value || 0);
+        if (document.getElementById('brickQty')) document.getElementById('brickQty').innerText = Math.ceil(brickQty);
+        if (document.getElementById('brickCost')) document.getElementById('brickCost').innerText = brickCost.toFixed(2);
+        
+        // Plaster
+        let plasterCost = (document.getElementById('plasterArea')?.value || 0) * (document.getElementById('plasterPrice')?.value || 0);
+        let plasterVolCalc = (document.getElementById('plasterArea')?.value || 0) * ((document.getElementById('plasterThick')?.value || 0) / 1000);
+        if (document.getElementById('plasterVol')) document.getElementById('plasterVol').innerText = plasterVolCalc.toFixed(3);
+        if (document.getElementById('plasterCost')) document.getElementById('plasterCost').innerText = plasterCost.toFixed(2);
+        
+        // Paint
+        let paintLitres = ((document.getElementById('paintArea')?.value || 0) / (document.getElementById('paintCoverage')?.value || 1)) * (document.getElementById('paintCoats')?.value || 1);
+        let paintCostCalc = paintLitres * (document.getElementById('paintPrice')?.value || 0);
+        if (document.getElementById('paintLitres')) document.getElementById('paintLitres').innerText = paintLitres.toFixed(1);
+        if (document.getElementById('paintCost')) document.getElementById('paintCost').innerText = paintCostCalc.toFixed(2);
+        
+        // Tiles
+        let tileSizeM = (document.getElementById('tileSize')?.value || 30) / 100;
+        let tilesPerSqm = 1 / (tileSizeM * tileSizeM);
+        let tileQty = (document.getElementById('tileArea')?.value || 0) * tilesPerSqm * 1.05;
+        let tileCostCalc = (document.getElementById('tileArea')?.value || 0) * (document.getElementById('tilePrice')?.value || 0);
+        if (document.getElementById('tileQty')) document.getElementById('tileQty').innerText = Math.ceil(tileQty);
+        if (document.getElementById('tileCost')) document.getElementById('tileCost').innerText = tileCostCalc.toFixed(2);
+        
+        // Wiring
+        let wiringMeters = document.getElementById('wiringLength')?.value || 0;
+        let wiringCostCalc = wiringMeters * (document.getElementById('wiringPrice')?.value || 0);
+        if (document.getElementById('wiringMeters')) document.getElementById('wiringMeters').innerText = wiringMeters;
+        if (document.getElementById('wiringCost')) document.getElementById('wiringCost').innerText = wiringCostCalc.toFixed(2);
+        
+        // Summary
+        let materialsTotal = concreteCost + formworkCost + rebarCost + brickCost + plasterCost + paintCostCalc + tileCostCalc + wiringCostCalc;
+        let labourCost = parseFloat(document.getElementById('labourCost')?.value) || 0;
+        let equipmentCost = parseFloat(document.getElementById('equipmentCost')?.value) || 0;
+        let markup = parseFloat(document.getElementById('markupPercent')?.value) || 0;
+        let contingency = parseFloat(document.getElementById('contingencyPercent')?.value) || 0;
+        
+        let subtotal = materialsTotal + labourCost + equipmentCost;
+        let markupAmount = subtotal * (markup / 100);
+        let contingencyAmount = (subtotal + markupAmount) * (contingency / 100);
+        let grandTotal = subtotal + markupAmount + contingencyAmount;
+        
+        // Update summary display
+        const sumIds = ['sumConcrete', 'sumFormwork', 'sumRebar', 'sumBricks', 'sumPlaster', 'sumPaint', 'sumTiles', 'sumWiring'];
+        const values = [concreteCost, formworkCost, rebarCost, brickCost, plasterCost, paintCostCalc, tileCostCalc, wiringCostCalc];
+        sumIds.forEach((id, idx) => { if(document.getElementById(id)) document.getElementById(id).innerHTML = `RM${values[idx].toFixed(2)}`; });
+        
+        if(document.getElementById('grandTotal')) document.getElementById('grandTotal').innerHTML = `GRAND TOTAL: RM ${grandTotal.toFixed(2)}`;
+        if(document.getElementById('breakdownText')) document.getElementById('breakdownText').innerHTML = `Materials: RM${materialsTotal.toFixed(2)} + Labour: RM${labourCost} + Equipment: RM${equipmentCost} + ${markup}% OH&P + ${contingency}% Contingency`;
+    }
+    
+    // Attach event listeners to BOQ inputs
+    const boqInputs = ['concreteLength', 'concreteWidth', 'concreteThick', 'concretePrice', 'formworkLength', 'formworkWidth', 'formworkHeight', 'formworkPrice', 'rebarVolume', 'rebarDensity', 'rebarPrice', 'brickLength', 'brickHeight', 'brickPerSqm', 'brickPrice', 'plasterArea', 'plasterThick', 'plasterPrice', 'paintArea', 'paintCoverage', 'paintPrice', 'paintCoats', 'tileArea', 'tileSize', 'tilePrice', 'wiringLength', 'wiringPrice', 'labourCost', 'equipmentCost', 'markupPercent', 'contingencyPercent'];
+    boqInputs.forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.addEventListener('input', calculateBOQ);
+    });
+    calculateBOQ();
+
+    // Format phone display
+    const phoneSpan = document.getElementById('phoneDisplay');
+    if (phoneSpan && whatsappPhone !== "60123456789") {
+        phoneSpan.textContent = `+60 ${whatsappPhone.slice(2, 5)} ${whatsappPhone.slice(5, 8)} ${whatsappPhone.slice(8)}`;
+    }
+</script>
+
+</body>
+</html>

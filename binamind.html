@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>BinaMind | AI Construction Management Platform</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F8FAFE;
+            color: #1E293B;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .navbar {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 16px 0;
+        }
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2563EB, #0F2B6D);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+        .logo span {
+            color: #2563EB;
+            background: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #334155;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #2563EB;
+        }
+        .btn-outline {
+            border: 1.5px solid #2563EB;
+            background: transparent;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #2563EB;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-outline:hover {
+            background: #2563EB10;
+        }
+        .btn-primary {
+            background: #2563EB;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            box-shadow: 0 2px 6px rgba(37,99,235,0.2);
+        }
+        .btn-primary:hover {
+            background: #1D4ED8;
+        }
+        .btn-large {
+            padding: 14px 36px;
+            font-size: 1.1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 0 40px 0;
+        }
+        .hero-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+        .hero-badge {
+            background: #EFF6FF;
+            color: #2563EB;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: #0F172A;
+            margin-bottom: 24px;
+        }
+        .hero-title span {
+            color: #2563EB;
+            border-bottom: 3px solid #93C5FD;
+        }
+        .hero-desc {
+            font-size: 1.2rem;
+            color: #475569;
+            max-width: 600px;
+            margin-bottom: 32px;
+        }
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-top: 24px;
+        }
+        .stat-item h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0F172A;
+        }
+        .stat-item p {
+            color: #5B6E8C;
+            font-size: 0.9rem;
+        }
+
+        /* Phase Workflow */
+        .phase-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 16px;
+            margin: 48px 0;
+            background: white;
+            border-radius: 32px;
+            padding: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .phase-card {
+            flex: 1;
+            min-width: 180px;
+            text-align: center;
+            padding: 16px;
+            background: #F8FAFE;
+            border-radius: 24px;
+        }
+        .phase-icon {
+            font-size: 2rem;
+            color: #2563EB;
+            margin-bottom: 12px;
+        }
+        .phase-card h4 {
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .phase-card p {
+            font-size: 0.8rem;
+            color: #5B6E8C;
+        }
+
+        /* Features Section */
+        .section {
+            padding: 64px 0;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .section-sub {
+            text-align: center;
+            color: #5B6E8C;
+            max-width: 700px;
+            margin: 0 auto 48px auto;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.05);
+            transition: all 0.25s;
+            border: 1px solid #E9EEF5;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+        }
+        .card-icon {
+            font-size: 2.4rem;
+            color: #2563EB;
+            margin-bottom: 20px;
+        }
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+        .card p {
+            color: #475569;
+        }
+
+        /* Pricing Table */
+        .pricing-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 40px;
+        }
+        .pricing-card {
+            background: white;
+            border-radius: 32px;
+            padding: 32px;
+            flex: 1;
+            min-width: 260px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #E2E8F0;
+            transition: all 0.25s;
+        }
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            border-color: #2563EB;
+        }
+        .pricing-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+        .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #0F172A;
+            margin: 16px 0 8px;
+        }
+        .feature-list {
+            list-style: none;
+            margin: 24px 0;
+        }
+        .feature-list li {
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature-list i.fa-check {
+            color: #22C55E;
+            width: 20px;
+        }
+        .feature-list i.fa-times {
+            color: #EF4444;
+            width: 20px;
+        }
+
+        /* CTA Box */
+        .cta-box {
+            background: linear-gradient(135deg, #0F2B6D 0%, #1E3A8A 100%);
+            border-radius: 40px;
+            padding: 48px 40px;
+            color: white;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 32px;
+            margin: 48px 0;
+        }
+        .cta-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+        .cta-text p {
+            color: #CBD5E1;
+            max-width: 450px;
+        }
+        .cta-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        footer {
+            background: #0F172A;
+            color: #94A3B8;
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .phase-container {
+                flex-direction: column;
+            }
+            .cta-box {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 100;
+            transition: transform 0.2s;
+        }
+        .whatsapp-float i {
+            font-size: 32px;
+            color: white;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+<div class="whatsapp-float" onclick="openWhatsApp()">
+    <i class="fab fa-whatsapp"></i>
+</div>
+
+<nav class="navbar">
+    <div class="container nav-flex">
+        <div class="logo">Bina<span>Mind</span></div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#features">Features</a>
+            <a href="#workflow">Workflow</a>
+            <a href="#pricing">Pricing</a>
+            <button class="btn-outline" onclick="openWhatsApp()">Contact Sales</button>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="container hero" id="home">
+        <div class="hero-grid">
+            <div>
+                <div class="hero-badge"><i class="fas fa-robot"></i> Malaysia's First AI Construction Manager</div>
+                <h1 class="hero-title">From <span>Tender</span> to <span>Final Account</span> — All via WhatsApp</h1>
+                <p class="hero-desc">One AI platform that handles tender analysis, BOQ extraction, progress claims, RFI tracking, CPRM, financial monitoring, and subcon coordination. Your entire construction project lifecycle, managed through WhatsApp.</p>
+                <button class="btn-primary btn-large" onclick="openWhatsApp()"><i class="fab fa-whatsapp"></i> Request Demo →</button>
+                <div class="hero-stats">
+                    <div class="stat-item"><h3>70%</h3><p>Faster Tender Processing</p></div>
+                    <div class="stat-item"><h3>15%</h3><p>Improved Cash Flow</p></div>
+                    <div class="stat-item"><h3>24/7</h3><p>AI Assistant</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="workflow">
+        <div class="phase-container">
+            <div class="phase-card">
+                <div class="phase-icon"><i class="fas fa-file-signature"></i></div>
+                <h4>Tender Phase</h4>
+                <p>Document analysis, BOQ extraction, cost estimation, bid submission</p>
+            </div>
+            <div class="phase-card">
+                <div class="phase-icon"><i class="fas fa-hard-hat"></i></div>
+                <h4>Ongoing Project</h4>
+                <p>Daily reports, RFI tracking, material inventory, subcon coordination</p>
+            </div>
+            <div class="phase-card">
+                <div class="phase-icon"><i class="fas fa-chart-line"></i></div>
+                <h4>CPRM</h4>
+                <p>Claims, progress claims, variation orders, cash flow forecast</p>
+            </div>
+            <div class="phase-card">
+                <div class="phase-icon"><i class="fas fa-file-invoice"></i></div>
+                <h4>Final Account</h4>
+                <p>Final quantities, variation reconciliation, project closeout</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="features">
+        <div class="container">
+            <h2 class="section-title">Everything You Need to Run Your Construction Business</h2>
+            <p class="section-sub">One WhatsApp number. Zero new software to learn. Complete project lifecycle management.</p>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-file-pdf"></i></div>
+                    <h3>Tender Intelligence</h3>
+                    <p>Upload 200-page tender PDF → AI extracts BOQ, specs, deadlines. Generates complete cost breakdown (labour, material, equipment) with markup scenarios and final bid amount.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-ruler-combined"></i></div>
+                    <h3>Auto Quantity Takeoff</h3>
+                    <p>Send floor plan drawings → AI counts doors, windows, wiring length, concrete volume. No manual measurement needed.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                    <h3>Progress Claims & CPRM</h3>
+                    <p>"Generate progress claim #4" → AI calculates claim value, deducts previous payments, applies retention. Complete CPRM claims management.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-exchange-alt"></i></div>
+                    <h3>RFI & Variation Management</h3>
+                    <p>RFIs logged automatically, response deadlines tracked, variation orders calculated. No more lost paperwork.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-boxes"></i></div>
+                    <h3>Material Inventory Tracking</h3>
+                    <p>"Ordered 100 blocks" → "Used 45 blocks" → Live balance + shareable link. Never run out of materials mid-pour.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-store"></i></div>
+                    <h3>Subcon Marketplace</h3>
+                    <p>Post job requests → Subcons receive link → Submit quotes → Compare prices → All within WhatsApp.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3>Financial Dashboard</h3>
+                    <p>Cash flow forecast, retention tracking, variation impact, profit analysis — all updated automatically.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Works on WhatsApp</h3>
+                    <p>No training required. Your team already uses WhatsApp. Just text the AI like you would a project manager.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="cta-box">
+            <div class="cta-text">
+                <h3>See It In Action</h3>
+                <p>We'll send a live demo directly to your WhatsApp. Send us a tender document, and we'll show you the complete costing in 5 minutes.</p>
+            </div>
+            <button class="cta-btn" onclick="openWhatsApp()"><i class="fab fa-whatsapp"></i> Get Live Demo →</button>
+        </div>
+    </div>
+
+    <div class="section" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <p class="section-sub">No hidden fees. Cancel anytime. First month pilot at cost.</p>
+            <div class="pricing-row">
+                <div class="pricing-card">
+                    <h4>Pilot</h4>
+                    <div class="price">RM 70-140</div>
+                    <p>First month (AI usage only)</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Tender analysis & BOQ</li>
+                        <li><i class="fas fa-check"></i> Quantity takeoff</li>
+                        <li><i class="fas fa-check"></i> Progress claims</li>
+                        <li><i class="fas fa-check"></i> WhatsApp access for 3 users</li>
+                        <li><i class="fas fa-check"></i> Onboarding & support</li>
+                    </ul>
+                    <button class="btn-primary" onclick="openWhatsApp()">Start Pilot</button>
+                </div>
+                <div class="pricing-card">
+                    <h4>Professional</h4>
+                    <div class="price">RM 1,500<small style="font-size:1rem">/mo</small></div>
+                    <p>After pilot, full automation</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Everything in Pilot</li>
+                        <li><i class="fas fa-check"></i> Full project lifecycle tracking</li>
+                        <li><i class="fas fa-check"></i> RFI & variation management</li>
+                        <li><i class="fas fa-check"></i> Subcon marketplace</li>
+                        <li><i class="fas fa-check"></i> CPRM claims management</li>
+                        <li><i class="fas fa-check"></i> WhatsApp for 10 users</li>
+                        <li><i class="fas fa-check"></i> Daily automated briefings</li>
+                    </ul>
+                    <button class="btn-primary" onclick="openWhatsApp()">Subscribe</button>
+                </div>
+                <div class="pricing-card">
+                    <h4>Enterprise</h4>
+                    <div class="price">Custom</div>
+                    <p>For main contractors & developers</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Everything in Professional</li>
+                        <li><i class="fas fa-check"></i> Final account & closeout</li>
+                        <li><i class="fas fa-check"></i> Custom skills development</li>
+                        <li><i class="fas fa-check"></i> Dedicated Malaysia server</li>
+                        <li><i class="fas fa-check"></i> Unlimited users</li>
+                        <li><i class="fas fa-check"></i> 24/7 support & SLA</li>
+                    </ul>
+                    <button class="btn-primary" onclick="openWhatsApp()">Talk to Us</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-bottom: 64px;">
+        <div style="background: #EFF6FF; border-radius: 32px; padding: 32px; text-align: center;">
+            <i class="fas fa-shield-alt" style="font-size: 2rem; color:#2563EB;"></i>
+            <h3 style="margin: 12px 0;">Your Data Stays Yours</h3>
+            <p style="color: #2C3E66; max-width: 600px; margin: 0 auto;">All tender documents, pricing data, and project files are processed on private servers. We never share your data with public AI models. Enterprise-grade security for construction.</p>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p><strong>BinaMind</strong> — AI Construction Management Platform | Serving contractors across Malaysia</p>
+        <p style="margin-top: 16px;"><i class="fab fa-whatsapp"></i> <span id="phoneNumber">+60 12 345 6789</span> | <i class="far fa-envelope"></i> hello@binamind.com.my</p>
+        <p style="margin-top: 24px; font-size: 0.8rem;">© 2026 BinaMind – From Tender to Final Account, One WhatsApp Number</p>
+    </div>
+</footer>
+
+<script>
+    // Replace with your actual WhatsApp number (Malaysia format: 60123456789 without +)
+    const whatsappPhone = "60123456789";
+    const defaultMessage = "Hi, I'm interested in BinaMind for my construction company. Please share more info and a demo.";
+
+    function openWhatsApp() {
+        const url = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(defaultMessage)}`;
+        window.open(url, '_blank');
+    }
+
+    // Optional: Update phone number display
+    document.addEventListener('DOMContentLoaded', function() {
+        const phoneSpan = document.getElementById('phoneNumber');
+        if (phoneSpan) {
+            phoneSpan.textContent = `+60 ${whatsappPhone.slice(2, 5)} ${whatsappPhone.slice(5, 8)} ${whatsappPhone.slice(8)}`;
+        }
+    });
+</script>
+
+</body>
+</html>
